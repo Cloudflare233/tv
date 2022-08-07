@@ -7,6 +7,9 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Link from "next/link";
 import path from "path";
+import rehypeKatex from "rehype-katex";
+import rehypePrism from "rehype-prism-plus";
+import remarkMath from "remark-math";
 import CustomLink from "../../components/CustomLink";
 import Layout from "../../components/Layout";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
@@ -20,7 +23,7 @@ const components = {
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
-  TestComponent: dynamic(() => import("../../components/TestComponent")),
+  Latex: dynamic(() =>import('react-latex')),
   Head,
 };
 
@@ -30,6 +33,10 @@ export default function PostPage({ source, frontMatter }) {
     <div className="bg-white dark:bg-black min-h-screen">
       <Head>
         <title>{frontMatter.title} | Cloudflare233</title>
+        <link
+            href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css"
+            rel="stylesheet"
+          />
       </Head>
       <div className="max-w-2xl mx-auto p-8 py-8 sm:py-16 sm:p-0">
         <div className="">
@@ -72,8 +79,8 @@ export const getStaticProps = async ({ params }) => {
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
     },
     scope: data,
   });
