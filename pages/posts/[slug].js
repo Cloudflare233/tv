@@ -7,14 +7,14 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Link from "next/link";
 import path from "path";
-import rehypeKatex from "rehype-katex";
-import rehypePrism from "rehype-prism-plus";
-import remarkMath from "remark-math";
+import mdxPrism from "mdx-prism";
+import readingTime from "reading-time";
+
 import CustomLink from "../../components/CustomLink";
-import Layout from "../../components/Layout";
 import Image from "next/image";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 import { useRouter } from "next/router";
+import ViewCounter from "../../components/ViewCounter";
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -37,14 +37,6 @@ export default function PostPage({ source, frontMatter }) {
     <div className="bg-white dark:bg-black min-h-screen">
       <Head>
         <title>{frontMatter.title} | Cloudflare233</title>
-        <link
-          href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/katex@0.16.0/dist/katex.min.css"
-        ></link>
       </Head>
       <div className="max-w-2xl mx-auto p-8 py-8 sm:py-16 sm:p-0">
         <div className="">
@@ -56,7 +48,7 @@ export default function PostPage({ source, frontMatter }) {
           <span>
             <h1 className="text-base sm:text-lg">{frontMatter.title}</h1>
             <p className="text-xs sm:text-sm opacity-50">
-              posted on {frontMatter.date}
+              posted on {frontMatter.date}, {frontMatter.wordCount} words, {frontMatter.readingTime.text}. <ViewCounter slug={frontMatter.title} />
             </p>
           </span>
           <span>
@@ -99,18 +91,31 @@ export const getStaticProps = async ({ params }) => {
   const { content, data } = matter(source);
 
   const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
+      remarkPlugins: [
+        import("remark-slug"),
+        [
+          import("remark-autolink-headings"),
+          {
+            linkProperties: {
+              className: ["anchor"],
+            },
+          },
+        ],
+        import("remark-code-titles"),
+      ],
+      rehypePlugins: [mdxPrism],
     },
-    scope: data,
   });
 
   return {
     props: {
       source: mdxSource,
-      frontMatter: data,
+      frontMatter: {
+        wordCount: content.split(/\s+/gu).length,
+        readingTime: readingTime(content),
+        ...data,
+      },
     },
   };
 };
