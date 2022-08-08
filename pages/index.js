@@ -6,19 +6,19 @@ import { useTheme } from "next-themes";
 import { useState } from "react";
 import path from "path";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
-import ViewCounter from "../components/ViewCounter";
 
-
-function Card({ href, title, key, slug, as }) {
+function Card({ href, title, key, tag, as }) {
   return (
-    <Link as={as} href={href}>
-      <button
+    <Link key={key} as={as} href={href}>
+      <a
         className="flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
         key={key}
       >
         <span>{title}</span>
-        <span className="opacity-75"><ViewCounter slug={slug} /></span>
-      </button>
+        <span className="opacity-75">
+          {tag}
+        </span>
+      </a>
     </Link>
   );
 }
@@ -36,27 +36,27 @@ export default function Index({ posts }) {
           <title>Blog | Cloudflare233</title>
         </Head>
         <h1 className="font-medium text-3xl sm:text-4xl mb-2">Blog</h1>
-          <div className="bg-white dark:bg-black flex opacity-100 flex-row sticky top-0 py-0 sm:py-1 border-b dark:border-b-zinc-800 w-full z-20">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 mt-[1.15rem] sm:mt-[1.9rem] ml-3 absolute opacity-80"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <input
-              className="hover:border-zinc-800 dark:hover:border-zinc-500 dark:focus:border-zinc-300 dark:border-zinc-800 dark:bg-black focus:border-black focus:outline-none border opacity-70 rounded-lg px-10 py-2 text-sm my-2 sm:my-5 w-full sm:w-3/4"
-              placeholder="Search..."
-              onChange={(e) => setSearchValue(e.target.value)}
+        <div className="bg-white dark:bg-black flex opacity-100 flex-row sticky top-0 py-0 sm:py-1 border-b dark:border-b-zinc-800 w-full z-20">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mt-[1.15rem] sm:mt-[1.9rem] ml-3 absolute opacity-80"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
-          </div>
+          </svg>
+          <input
+            className="hover:border-zinc-800 dark:hover:border-zinc-500 dark:focus:border-zinc-300 dark:border-zinc-800 dark:bg-black focus:border-black focus:outline-none border opacity-70 rounded-lg px-10 py-2 text-sm my-2 sm:my-5 w-full sm:w-3/4"
+            placeholder="Search..."
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </div>
         <span className="mt-6 flex flex-col space-y-4 text-left mb-3">
           {SearchFiltered.map((post) => (
             <Card
@@ -65,6 +65,7 @@ export default function Index({ posts }) {
               title={post.data.title}
               slug={post.data.title}
               href={`/posts/[slug]`}
+              tag={post.data.tag}
             />
           ))}
           {!SearchFiltered.length && (

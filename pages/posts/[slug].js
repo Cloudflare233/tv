@@ -7,14 +7,12 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Link from "next/link";
 import path from "path";
-import mdxPrism from "mdx-prism";
 import readingTime from "reading-time";
 
 import CustomLink from "../../components/CustomLink";
 import Image from "next/image";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 import { useRouter } from "next/router";
-import ViewCounter from "../../components/ViewCounter";
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -26,7 +24,6 @@ const components = {
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
-  ReactKatex: dynamic(() => import("@pkasila/react-katex")),
   Head,
 };
 
@@ -48,7 +45,7 @@ export default function PostPage({ source, frontMatter }) {
           <span>
             <h1 className="text-base sm:text-lg">{frontMatter.title}</h1>
             <p className="text-xs sm:text-sm opacity-50">
-              posted on {frontMatter.date}, {frontMatter.wordCount} words, {frontMatter.readingTime.text}. <ViewCounter slug={frontMatter.title} />
+              {frontMatter.date}, {frontMatter.tag} ,{` `}{frontMatter.wordCount} words, {frontMatter.readingTime.text}.
             </p>
           </span>
           <span>
@@ -93,7 +90,7 @@ export const getStaticProps = async ({ params }) => {
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [mdxPrism],
+      rehypePlugins: [],
     },
   });
 
