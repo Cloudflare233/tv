@@ -83,6 +83,7 @@ export default function Index({ posts }) {
             >
               <option value="light">☀️ Light</option>
               <option value="dark">🌙 Dark</option>
+              <option value="system">🖥 System</option>
             </select>
           </footer>
         </center>
