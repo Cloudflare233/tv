@@ -92,18 +92,7 @@ export const getStaticProps = async ({ params }) => {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [
-        import("remark-slug"),
-        [
-          import("remark-autolink-headings"),
-          {
-            linkProperties: {
-              className: ["anchor"],
-            },
-          },
-        ],
-        import("remark-code-titles"),
-      ],
+      remarkPlugins: [],
       rehypePlugins: [mdxPrism],
     },
   });
