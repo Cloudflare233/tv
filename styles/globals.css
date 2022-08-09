@@ -46,12 +46,12 @@ li{
 }
 
 code{
-  @apply text-xs opacity-75;
+  @apply font-mono text-xs opacity-75;
   font-family: "IBM Plex Mono", monospace;
 }
 
 pre{
-  @apply p-8 sm:p-12 rounded-lg border dark:border-zinc-800 text-sm;
+  @apply font-mono p-8 sm:p-12 rounded-lg border dark:border-zinc-800 text-sm;
   font-family: "IBM Plex Mono", monospace;
 }
 
