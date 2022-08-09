@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import "normalize.css/normalize.css";
-import "@fontsource/ibm-plex-mono"
 import "@fontsource/ibm-plex-sans";
 import { ThemeProvider } from "next-themes";
 import { PageTransition } from "next-page-transitions";
