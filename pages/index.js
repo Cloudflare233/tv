@@ -17,11 +17,11 @@ const data = [
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZielpORmliYnJyUllFZXc_ZT1waEhmdFI.mp4",
   },
   {
-    title: "GTAIV Opening Plot",
+    title: "GTAIV Opening",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjYTBMdENkbGt1QTBWdTQ_ZT1HSmwxZGw.mp4",
   },
   {
-    title: "Soviet Connection (Live)",
+    title: "Soviet Connection",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjRkV6TWpEZ1dYMXpNRVk_ZT0yek1GTGw.mp4",
   },
   {
@@ -129,7 +129,6 @@ export default function Home() {
                     </button>
                     <span className="opacity-60">Now Playing: {isPlaying}</span>
                     <span className="opacity-60">
-                      Style: {``}
                       <button
                         onClick={() =>
                           setStyle(style === "modern" ? "old" : "modern")
