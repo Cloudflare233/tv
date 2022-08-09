@@ -23,7 +23,7 @@ function Card({ href, title, key, tag, as }) {
   );
 }
 
-export default function Index({ posts }) {
+export default function Home({ posts }) {
   const { theme, setTheme } = useTheme();
   const [searchValue, setSearchValue] = useState("");
   const SearchFiltered = posts.filter((post) =>
