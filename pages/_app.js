@@ -5,8 +5,6 @@ import "@fontsource/ibm-plex-sans";
 import { ThemeProvider } from "next-themes";
 import { PageTransition } from "next-page-transitions";
 
-import Loader from "../components/Loader";
-
 const TIMEOUT = 400;
 
 function MyApp({ Component, pageProps }) {
@@ -15,7 +13,6 @@ function MyApp({ Component, pageProps }) {
       <PageTransition
         timeout={TIMEOUT}
         classNames="page-transition"
-        loadingComponent={<Loader />}
         loadingDelay={500}
         loadingTimeout={{
           enter: TIMEOUT,
