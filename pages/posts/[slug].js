@@ -10,7 +10,7 @@ import path from "path";
 import readingTime from "reading-time";
 
 import CustomLink from "../../components/CustomLink";
-import Image from "next/image";
+import CustomImage from "../../components/CustomImage";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 import { useRouter } from "next/router";
 
@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 // here.
 const components = {
   a: CustomLink,
-  img: Image,
+  img: CustomImage,
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
