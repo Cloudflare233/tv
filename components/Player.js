@@ -147,6 +147,29 @@ class App extends Component {
     this.player = player;
   };
 
+  componentDidMount() {
+    this.showSaveCover();
+  }
+
+  showSaveCover() {
+    this.setState({
+      isWarning: true,
+    });
+    this.hideSaveCover();
+  }
+
+  hideSaveCover() {
+    var self = this;
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(() => {
+      self.setState({
+        isWarning: false,
+      });
+    }, 8888);
+  }
+
   render() {
     const { url } = this.props;
     const {
@@ -171,37 +194,42 @@ class App extends Component {
 
     return (
       <div>
-        <ReactPlayer
-          ref={this.ref}
-          className="rounded-lg min-h-full"
-          width="100%"
-          height="100%"
-          style={{ "border-radius": "0.5rem" }}
-          url={url}
-          pip={pip}
-          playing={playing}
-          controls={controls}
-          light={light}
-          loop={loop}
-          playbackRate={playbackRate}
-          volume={volume}
-          muted={muted}
-          onReady={() => console.log("onReady")}
-          onStart={() => console.log("onStart")}
-          onPlay={this.handlePlay}
-          onEnablePIP={this.handleEnablePIP}
-          onDisablePIP={this.handleDisablePIP}
-          onPause={this.handlePause}
-          onBuffer={() => console.log("onBuffer")}
-          onPlaybackRateChange={this.handleOnPlaybackRateChange}
-          onSeek={(e) => console.log("onSeek", e)}
-          onEnded={this.handleEnded}
-          onError={(e) => console.log("onError", e)}
-          onProgress={this.handleProgress}
-          onDuration={this.handleDuration}
-        />
+        <div
+          onTouchEnd={() => this.showSaveCover()}
+          onMouseEnter={() => this.showSaveCover()}
+        >
+          <ReactPlayer
+            ref={this.ref}
+            className="rounded-lg min-h-full"
+            width="100%"
+            height="100%"
+            style={{ "border-radius": "0.5rem" }}
+            url={url}
+            pip={pip}
+            playing={playing}
+            controls={controls}
+            light={light}
+            loop={loop}
+            playbackRate={playbackRate}
+            volume={volume}
+            muted={muted}
+            onReady={() => console.log("onReady")}
+            onStart={() => console.log("onStart")}
+            onPlay={this.handlePlay}
+            onEnablePIP={this.handleEnablePIP}
+            onDisablePIP={this.handleDisablePIP}
+            onPause={this.handlePause}
+            onBuffer={() => console.log("onBuffer")}
+            onPlaybackRateChange={this.handleOnPlaybackRateChange}
+            onSeek={(e) => console.log("onSeek", e)}
+            onEnded={this.handleEnded}
+            onError={(e) => console.log("onError", e)}
+            onProgress={this.handleProgress}
+            onDuration={this.handleDuration}
+          />
+        </div>
         {info === true ? (
-          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg z-50 top-[5.7rem] sm:top-[9.75rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
+          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg z-50 top-[11.9rem] sm:top-[13.9rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
@@ -223,7 +251,13 @@ class App extends Component {
         ) : (
           <></>
         )}
-        <div className="transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[16rem] sm:top-[33rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30">
+
+        <div
+          className={cn(
+            "animate__animated animate__fadeInUp transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[23rem] sm:top-[38rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
+            !!this.state.isWarning ? "block" : "animate__fadeOutDown"
+          )}
+        >
           <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
             <div className="flex flex-row space-x-2">
               <button onClick={this.handleToggleMuted}>
@@ -254,7 +288,7 @@ class App extends Component {
               />
             </div>
             <div className="opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
-            {playbackRate === 0.5 && (
+              {playbackRate === 0.5 && (
                 <button>
                   <Icon
                     className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
@@ -390,6 +424,11 @@ class App extends Component {
                 onMouseDown={this.handleSeekMouseDown}
                 onChange={this.handleSeekChange}
                 onMouseUp={this.handleSeekMouseUp}
+                onTouchEndCapture={() => {
+                  this.handleSeekMouseDown;
+                  this.handleSeekChange;
+                  this.handleSeekMouseUp;
+                }}
                 className="-mt-2 w-full"
               />
             </div>

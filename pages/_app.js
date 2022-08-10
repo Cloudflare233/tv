@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import 'animate.css'
 import "normalize.css/normalize.css";
 import "@fontsource/ibm-plex-sans";
 import { ThemeProvider } from "next-themes";
