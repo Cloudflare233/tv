@@ -200,7 +200,7 @@ class App extends Component {
           onDuration={this.handleDuration}
         />
         {info === true ? (
-          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg top-[4.5rem] sm:top-[6.75rem] px-6 sm:px-12 py-4 sm:py-10 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
+          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg top-[4.5rem] sm:top-[6.75rem] px-6 sm:px-12 py-4 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
@@ -224,7 +224,7 @@ class App extends Component {
           <></>
         )}
         <div className="resize flex flex-col space-y-2 z-30 top-[16rem] sm:top-[30rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30">
-          <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-12">
+          <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
             <div className="flex flex-row space-x-2">
               <button onClick={this.handleToggleMuted}>
                 {muted ? (
