@@ -122,26 +122,16 @@ export default function Home() {
             leaveTo="opacity-0"
           >
             <>
-              <div className="bg-white dark:bg-black text-xs sm:text-sm mt-12 sm:mt-0 absolute top-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto h-full">
+              <div className="fadeInDown bg-white dark:bg-black text-xs sm:text-sm mt-12 sm:mt-0 absolute top-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto h-full">
                 <div className="max-w-2xl mx-auto">
                   <div className="my-5 flex flex-row space-x-4">
                     <button onClick={() => setOpen(false)}>
                       ← Back to index
                     </button>
                     <span className="opacity-60">Now Playing: {isPlaying}</span>
-                    <span className="opacity-60">
-                      <button
-                        onClick={() =>
-                          setStyle(style === "modern" ? "old" : "modern")
-                        }
-                      >
-                        {style === "modern" && <>Modern</>}
-                        {style === "old" && <>Old</>}
-                      </button>
-                    </span>
                   </div>
                   <Player url={playing} />
-                  <footer className="flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4">
+                  <footer className="bottom-0 sticky flex flex-row space-x-4 mt-28 sm:mt-36 mb-2 sm:mb-4">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
                       Copyright ©️ 2022 Cloudflare233.
                     </h2>

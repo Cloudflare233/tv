@@ -17,7 +17,7 @@ input[type="range"] {
   @apply bg-black dark:bg-white rounded-3xl opacity-75;
   /*border-radius: 15px;*/
   -webkit-appearance: none;
-  height:4px;
+  height: 4px;
   padding: 0;
   border: none;
   cursor: pointer;
@@ -32,5 +32,15 @@ input[type="range"]::-webkit-slider-thumb {
   /*-webkit-box-shadow: 0 -1px 1px #fc7701 inset;*/
 }
 
+.fadeInDown {
+  animation: fadeIn 3s ease;
+}
 
-
+@keyframes fadeIn {
+  0% {
+    @apply h-2/3;
+  }
+  100% {
+    @apply h-full;
+  }
+}
