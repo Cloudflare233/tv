@@ -200,7 +200,7 @@ class App extends Component {
           onDuration={this.handleDuration}
         />
         {info === true ? (
-          <div className="text-xs sm:text-sm text-zinc-800 absolute rounded-br-lg top-[4.5rem] sm:top-[6.75rem] px-6 sm:px-12 py-4 sm:py-10 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
+          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg top-[4.5rem] sm:top-[6.75rem] px-6 sm:px-12 py-4 sm:py-10 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
