@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Transition } from "@headlessui/react";
+import Player from "../components/Player";
 
 const data = [
   {
@@ -139,24 +140,7 @@ export default function Home() {
                       </button>
                     </span>
                   </div>
-                  <video
-                    className={cn(
-                      "rounded-lg w-full",
-                      style === "old" ? "grayscale" : "grayscale-0"
-                    )}
-                    autoplay="autoplay"
-                    controls
-                  >
-                    <source src={playing} type="video/mp4" />
-                  </video>
-                  <span className="my-4">
-                    <details className="mt-5 text-sm">
-                      <summary>Show the video's details</summary>
-                      <p className="flex flex-row flex-nowrap text-sm mb-6 overflow-x-auto">
-                        URL: {playing}
-                      </p>
-                    </details>
-                  </span>
+                  <Player url={playing} />
                   <footer className="flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
                       Copyright ©️ 2022 Cloudflare233.
