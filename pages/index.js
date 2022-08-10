@@ -18,6 +18,10 @@ const data = [
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZielpORmliYnJyUllFZXc_ZT1waEhmdFI.mp4",
   },
   {
+    title: "Solders' Dance",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjeEpueVBfaDk0RC1pUVk_ZT1SWHM2Z1k.mp4",
+  },
+  {
     title: "GTAIV Opening",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjYTBMdENkbGt1QTBWdTQ_ZT1HSmwxZGw.mp4",
   },
@@ -126,34 +130,31 @@ export default function Home() {
             leaveTo="opacity-0"
           >
             <>
-              <div className="fadeInDown bg-white dark:bg-black text-xs sm:text-sm mt-12 sm:mt-0 absolute top-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto h-full">
-                <div className="max-w-2xl mx-auto">
+              <div className="bg-white dark:bg-black text-xs sm:text-sm mt-12 sm:mt-0 absolute top-0 bottom-0 inset-x-0 rounded-lg p-6 sm:p-12 z-30 w-full mx-auto h-full">
+                <div className="max-w-2xl mx-auto mt-8 sm:mt-16">
                   <div className="my-5 flex flex-row space-x-4">
                     <button onClick={() => setOpen(false)}>
                       ← Back to index
                     </button>
                     <span className="opacity-60">Now Playing: {isPlaying}</span>
+                    <span>
+                      <select
+                        value={theme}
+                        onChange={(e) => setTheme(e.target.value)}
+                        className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
+                      >
+                        <option value="light">☀️ Light</option>
+                        <option value="dark">🌙 Dark</option>
+                      </select>
+                    </span>
                   </div>
                   <Player url={playing} />
-                  <footer className="bottom-0 sticky flex flex-row space-x-4 mt-28 sm:mt-36 mb-2 sm:mb-4">
-                    <h2 className="font-medium opacity-40 text-xs sm:text-sm">
-                      Copyright ©️ 2022 Cloudflare233.
-                    </h2>
-                    <select
-                      value={theme}
-                      onChange={(e) => setTheme(e.target.value)}
-                      className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
-                    >
-                      <option value="light">☀️ Light</option>
-                      <option value="dark">🌙 Dark</option>
-                    </select>
-                  </footer>
                 </div>
               </div>
             </>
           </Transition>
         )}
-        <footer className="flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4">
+        <footer className="bottom-0 sticky flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4">
           <h2 className="font-medium opacity-40 text-xs sm:text-sm">
             Copyright ©️ 2022 Cloudflare233.
           </h2>

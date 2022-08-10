@@ -176,6 +176,7 @@ class App extends Component {
           className="rounded-lg min-h-full"
           width="100%"
           height="100%"
+          style={{ "border-radius": "0.5rem" }}
           url={url}
           pip={pip}
           playing={playing}
@@ -200,7 +201,7 @@ class App extends Component {
           onDuration={this.handleDuration}
         />
         {info === true ? (
-          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg top-[4.5rem] sm:top-[6.75rem] px-6 sm:px-12 py-4 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
+          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg z-50 top-[5.7rem] sm:top-[9.75rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
@@ -214,7 +215,6 @@ class App extends Component {
             <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
               speed: {playbackRate}
             </p>
-            <p>info: {info}</p>
             <p className="">loop: {loop ? <>true</> : <>false</>}</p>
             <button onClick={this.handleToogleInfo}>
               [x] close this video's detail page
@@ -223,7 +223,7 @@ class App extends Component {
         ) : (
           <></>
         )}
-        <div className="resize flex flex-col space-y-2 z-30 top-[16rem] sm:top-[30rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30">
+        <div className="transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[16rem] sm:top-[33rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30">
           <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
             <div className="flex flex-row space-x-2">
               <button onClick={this.handleToggleMuted}>
@@ -254,12 +254,46 @@ class App extends Component {
               />
             </div>
             <div className="opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
-              <button className="hidden sm:block" onClick={this.handleSetPlaybackRate} value={0.75}>
-                0.75x
-              </button>
-              <button onClick={this.handleSetPlaybackRate} value={1}>
-                1x
-              </button>
+            {playbackRate === 0.5 && (
+                <button>
+                  <Icon
+                    className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:rewind-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 0.75 && (
+                <button onClick={this.handleSetPlaybackRate} value="0.5">
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:rewind-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 1 && (
+                <button onClick={this.handleSetPlaybackRate} value="0.75">
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:rewind-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 1.5 && (
+                <button onClick={this.handleSetPlaybackRate} value="1">
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:rewind-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 2 && (
+                <button onClick={this.handleSetPlaybackRate} value="1.5">
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:rewind-fill"
+                  />
+                </button>
+              )}
               <button onClick={this.handlePlayPause}>
                 {playing ? (
                   <>
@@ -277,14 +311,48 @@ class App extends Component {
                   </>
                 )}
               </button>
-              <button className="hidden sm:block" onClick={this.handleSetPlaybackRate} value={1.5}>
-                1.5x
-              </button>
-              <button onClick={this.handleSetPlaybackRate} value={2}>
-                2x
-              </button>
+              {playbackRate === 0.5 && (
+                <button onClick={this.handleSetPlaybackRate} value={0.75}>
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:fast-forward-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 0.75 && (
+                <button onClick={this.handleSetPlaybackRate} value={1}>
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:fast-forward-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 1 && (
+                <button onClick={this.handleSetPlaybackRate} value={1.5}>
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:fast-forward-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 1.5 && (
+                <button onClick={this.handleSetPlaybackRate} value={2}>
+                  <Icon
+                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:fast-forward-fill"
+                  />
+                </button>
+              )}
+              {playbackRate === 2 && (
+                <button>
+                  <Icon
+                    className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
+                    icon="bi:fast-forward-fill"
+                  />
+                </button>
+              )}
             </div>
-            <div className="flex flex-row space-x-3">
+            <div className="flex flex-row space-x-1.5 sm:space-x-3">
               <button onClick={this.handleClickFullscreen}>
                 <Icon
                   className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
