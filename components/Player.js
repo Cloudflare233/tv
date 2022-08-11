@@ -196,7 +196,7 @@ class App extends Component {
       <div>
         {played === 0 && loaded < 1 && (
           <>
-            <div className="animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-zinc-900/80 rounded-lg">
+            <div className="mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
               <div class="animate-pulse"></div>
             </div>
             <div
@@ -239,7 +239,7 @@ class App extends Component {
         >
           <ReactPlayer
             ref={this.ref}
-            className="rounded-lg min-h-full video react-player"
+            className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player"
             width="100%"
             height="100%"
             style={{ "border-radius": "0.5rem" }}
