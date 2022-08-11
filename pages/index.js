@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Transition } from "@headlessui/react";
 import Player from "../components/Player";
-import Link from "next/link";
 
 const data = [
   {
@@ -17,6 +16,10 @@ const data = [
   {
     title: "Singing in the rain",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZielpORmliYnJyUllFZXc_ZT1waEhmdFI.mp4",
+  },
+  {
+    title: "AirCrash -ASA261",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZkOVE4d2p0aURTTXJNYlk_ZT1nSXpWYU0.jpg",
   },
   {
     title: "Soldiers' Dance",
@@ -134,7 +137,7 @@ export default function Home() {
           >
             <>
               <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen">
-                <div className="max-w-2xl mx-auto my-5 flex flex-row space-x-4">
+                <div className="max-w-2xl sm:max-w-[40%] mx-auto my-5 flex flex-row space-x-4">
                   <button onClick={() => setOpen(false)}>
                     ← Back to index
                   </button>
