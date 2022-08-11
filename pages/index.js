@@ -134,8 +134,8 @@ export default function Home() {
             leaveTo="opacity-0"
           >
             <>
-              <div className="bg-white dark:bg-black text-xs sm:text-sm mt-12 sm:mt-0 fixed -top-16 bottom-0 inset-x-0 rounded-lg p-6 sm:p-12 z-30 w-full mx-auto h-full">
-                <div className="max-w-2xl mx-auto mt-32">
+              <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen">
+                <div className="max-w-2xl mx-auto mt-8">
                   <div className="my-5 flex flex-row space-x-4">
                     <button onClick={() => setOpen(false)}>
                       ← Back to index
@@ -158,7 +158,7 @@ export default function Home() {
             </>
           </Transition>
         )}
-        <footer className="bottom-0 sticky flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
+        <footer className="bg-white dark:bg-black bottom-0 sticky flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
           <h2 className="font-medium opacity-40 text-xs sm:text-sm">
             Copyright ©️ 2022 Cloudflare233.
           </h2>

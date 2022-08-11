@@ -14,7 +14,7 @@ class App extends Component {
     playing: true,
     controls: false,
     light: false,
-    volume: 0.8,
+    volume: 1,
     muted: false,
     played: 0,
     loaded: 0,
@@ -194,13 +194,52 @@ class App extends Component {
 
     return (
       <div>
+        {played === 0 && loaded < 1 && (
+          <>
+            <div className="animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-zinc-900/80 rounded-lg">
+              <div class="animate-pulse"></div>
+            </div>
+            <div
+              className={cn(
+                "transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[16rem] sm:top-[30rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
+              )}
+            >
+              <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
+                <div className="animate-pulse w-1/4">
+                  <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+                <div className="animate-pulse w-1/2 opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
+                  <div className="w-full px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+                <div className="animate-pulse w-1/4">
+                  <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+              </div>
+              <div className="w-full flex flex-row space-x-4 mx-auto max-w-md center justify-between">
+                <div className="animate-pulse mt-[0.15rem]">
+                  <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+                <div className="animate-pulse w-3/4">
+                  <div className="w-full px-18 sm:px-36 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+                <div className="animate-pulse mt-[0.15rem]">
+                  <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
         <div
           onTouchEnd={() => this.showSaveCover()}
           onMouseEnter={() => this.showSaveCover()}
+          className={cn(
+            "animate__animated animate__fadeIn",
+            played === 0 && loaded < 1 ? "hidden" : "block"
+          )}
         >
           <ReactPlayer
             ref={this.ref}
-            className="rounded-lg min-h-full"
+            className="rounded-lg min-h-full video react-player"
             width="100%"
             height="100%"
             style={{ "border-radius": "0.5rem" }}
@@ -229,7 +268,7 @@ class App extends Component {
           />
         </div>
         {info === true ? (
-          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg z-50 top-[11.9rem] sm:top-[13.9rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
+          <div className="text-xs sm:text-sm dark:text-zinc-200 text-zinc-800 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-lg w-2/3 sm:w-1/3">
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
@@ -254,8 +293,9 @@ class App extends Component {
 
         <div
           className={cn(
-            "animate__animated animate__fadeInUp transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[23rem] sm:top-[38rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
-            !!this.state.isWarning ? "block" : "animate__fadeOutDown"
+            "animate__animated animate__fadeInUp transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[16rem] sm:top-[30rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
+            !!this.state.isWarning ? "block" : "animate__fadeOutDown",
+            played === 0 && loaded < 1 ? "hidden" : "block"
           )}
         >
           <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
@@ -418,18 +458,16 @@ class App extends Component {
               <input
                 type="range"
                 min={0}
-                max={0.999999}
+                max={1}
                 step="any"
                 value={played}
                 onMouseDown={this.handleSeekMouseDown}
                 onChange={this.handleSeekChange}
                 onMouseUp={this.handleSeekMouseUp}
-                onTouchEndCapture={() => {
-                  this.handleSeekMouseDown;
-                  this.handleSeekChange;
-                  this.handleSeekMouseUp;
-                }}
-                className="-mt-2 w-full"
+                onTouchMove={this.handleSeekChange}
+                onTouchStart={this.handleSeekMouseDown}
+                onTouchEnd={this.handleSeekMouseUp}
+                className="-mt-2 mb-1.5 sm:mb-3 w-full"
               />
             </div>
             <div className="mt-[0.15rem]">
