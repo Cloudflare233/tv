@@ -46,9 +46,7 @@ svg {
         -moz-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg);
         transform: rotate(-90deg);
-        width: 100vh;
-        height: 100vh;
-        /*去掉overflow 微信显示正常，但是浏览器有问题，竖屏时强制横屏缩小*/
+        @apply w-full;
         overflow: hidden;
     }
 }

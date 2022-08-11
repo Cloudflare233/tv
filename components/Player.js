@@ -202,7 +202,7 @@ class App extends Component {
 
     return (
       <div>
-        <div className={cn("mx-auto mt-8 transition-all duration-500", full === false ? "max-w-2xl sm:max-w-[40%] mx-auto" : "mobile min-h-full min-w-screen sm:min-w-auto bottom-0 -ml-8 sm:-mt-36 left-0 right-0 fixed scale-75")}>
+        <div className={cn("mx-auto mt-8 transition-all duration-500", full === false ? "max-w-2xl sm:max-w-[40%] mx-auto" : "mobile min-h-full min-w-screen sm:min-w-auto bottom-0 sm:left-0 right-0 fixed scale-50")}>
           {played === 0 && loaded < 1 && (
             <>
               <div className="mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/50 rounded-lg">
