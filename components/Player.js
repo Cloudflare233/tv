@@ -320,7 +320,7 @@ class App extends Component {
                 : "w-3/4 sm:w-[36%]  block top-[16rem] sm:top-[30rem]",
               full === false
                 ? "w-3/4 sm:w-[36%] top-[16rem] sm:top-[30rem]"
-                : "mobile sm:top-[60rem] mt-[7rem] w-1/2 sm:mt-0"
+                : "mobile sm:top-[56rem] mt-[7rem] w-1/2 sm:mt-0"
             )}
           >
             <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
