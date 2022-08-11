@@ -201,7 +201,7 @@ class App extends Component {
             </div>
             <div
               className={cn(
-                "transition-all duration-500 flex flex-col space-y-1.5 z-30 top-[16rem] sm:top-[30rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
+                "transition-all duration-500 flex flex-col space-y-2 z-30 top-[15rem] sm:top-[28.5rem] w-3/4 sm:w-1/3 left-4 right-4 sm:left-36 sm:right-36 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
               )}
             >
               <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
