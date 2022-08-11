@@ -314,13 +314,13 @@ class App extends Component {
               "animate__animated transition-all duration-500 flex flex-col space-y-1.5 z-30  backdrop-blur-lg absolute px-4 mx-auto left-0 right-0 sm:left-36 sm:right-36 py-2 rounded-lg bg-white/30 dark:bg-black/30",
               !!this.state.isWarning
                 ? "animate__fadeInUp sm:animate__fadeInUp w-3/4 sm:w-[36%]  block"
-                : "animate__fadeOut sm:animate__fadeOutDown top-[16rem] sm:top-[30rem]",
+                : "animate__fadeOutDown sm:animate__fadeOutDown top-[16rem] sm:top-[30rem]",
               played === 0 && loaded < 1
                 ? "hidden"
                 : "w-3/4 sm:w-[36%]  block top-[16rem] sm:top-[30rem]",
               full === false
                 ? "w-3/4 sm:w-[36%] top-[16rem] sm:top-[30rem]"
-                : "mobile sm:top-[60rem] mt-40 sm:mt-0"
+                : "mobile sm:top-[60rem] mt-[7rem] w-1/2 sm:mt-0"
             )}
           >
             <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
