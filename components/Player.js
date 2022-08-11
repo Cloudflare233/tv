@@ -146,8 +146,8 @@ class App extends Component {
   };
 
   handleToogleScreen = () => {
-    this.setState({ full: !this.state.full});
-    console.log(this.state.full)
+    this.setState({ full: !this.state.full });
+    console.log(this.state.full);
   };
 
   ref = (player) => {
@@ -178,7 +178,7 @@ class App extends Component {
   }
 
   render() {
-    const { url } = this.props;
+    const { url,isPlaying } = this.props;
     const {
       playing,
       controls,
@@ -202,7 +202,14 @@ class App extends Component {
 
     return (
       <div>
-        <div className={cn("mx-auto mt-8 transition-all duration-500", full === false ? "max-w-2xl sm:max-w-[40%] mx-auto" : "mobile min-h-full min-w-screen sm:min-w-auto bottom-0 sm:left-0 right-0 fixed scale-50")}>
+        <div
+          className={cn(
+            "mx-auto mt-8 transition-all duration-500",
+            full === false
+              ? "max-w-2xl sm:max-w-[40%] mx-auto"
+              : "mobile min-h-full min-w-screen w-[100rem] sm:min-w-auto bottom-0 -ml-8 sm:-mt-36 left-0 right-0 absolute center mx-auto"
+          )}
+        >
           {played === 0 && loaded < 1 && (
             <>
               <div className="mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/50 rounded-lg">
@@ -291,12 +298,8 @@ class App extends Component {
               <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
                 speed: {playbackRate}
               </p>
-              <p>
-                fullscreen: {full ? <>true</> : <>false</>}
-              </p>
-              <p>
-                info: {info ? <>true</> : <>false</>}
-              </p>
+              <p>fullscreen: {full ? <>true</> : <>false</>}</p>
+              <p>info: {info ? <>true</> : <>false</>}</p>
               <p className="">loop: {loop ? <>true</> : <>false</>}</p>
               <button onClick={this.handleToogleInfo}>
                 [x] close this video's detail page
@@ -308,10 +311,16 @@ class App extends Component {
 
           <div
             className={cn(
-              "animate__animated animate__fadeInUp transition-all duration-500 flex flex-col space-y-1.5 z-30  backdrop-blur-lg absolute px-4 mx-auto left-0 right-0 sm:left-36 sm:right-36 center py-2 rounded-lg bg-white/30 dark:bg-black/30",
-              !!this.state.isWarning ? "w-3/4 sm:w-[36%]  block" : "animate__fadeOutDown top-[16rem] sm:top-[30rem]",
-              played === 0 && loaded < 1 ? "hidden" : "w-3/4 sm:w-[36%]  block top-[16rem] sm:top-[30rem]",
-              full === false ? 'w-3/4 sm:w-[36%] top-[16rem] sm:top-[30rem]' : 'mobile sm:top-[60rem]'
+              "animate__animated transition-all duration-500 flex flex-col space-y-1.5 z-30  backdrop-blur-lg absolute px-4 mx-auto left-0 right-0 sm:left-36 sm:right-36 py-2 rounded-lg bg-white/30 dark:bg-black/30",
+              !!this.state.isWarning
+                ? "animate__fadeInUp sm:animate__fadeInUp w-3/4 sm:w-[36%]  block"
+                : "animate__fadeOut sm:animate__fadeOutDown top-[16rem] sm:top-[30rem]",
+              played === 0 && loaded < 1
+                ? "hidden"
+                : "w-3/4 sm:w-[36%]  block top-[16rem] sm:top-[30rem]",
+              full === false
+                ? "w-3/4 sm:w-[36%] top-[16rem] sm:top-[30rem]"
+                : "mobile sm:top-[60rem] mt-40 sm:mt-0"
             )}
           >
             <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">

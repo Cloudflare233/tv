@@ -40,22 +40,28 @@ svg {
   pointer-events: none;
 }
 
+@media screen and max-width(767px) {
+  .width {
+    width: 24px !important;
+  }
+}
+
 @media screen and (orientation: portrait) {
-    .mobile {
-        -webkit-transform:rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        transform: rotate(-90deg);
-        @apply w-full;
-        overflow: hidden;
-    }
+  .mobile {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    width: 84vh;
+    z-index: 9999;
+  }
 }
 
 @media screen and (orientation: landscape) {
-    .mobile {
-        -webkit-transform:rotate(0);
-        -moz-transform: rotate(0);
-        -ms-transform: rotate(0);
-        transform: rotate(0)
-    }
+  .mobile {
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+  }
 }

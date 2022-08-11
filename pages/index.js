@@ -143,15 +143,15 @@ export default function Home() {
                   </button>
                   <span className="opacity-60">Now Playing: {isPlaying}</span>
                   <span>
-                    <select
-                      value={theme}
-                      onChange={(e) => setTheme(e.target.value)}
-                      className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
-                    >
-                      <option value="light">☀️ Light</option>
-                      <option value="dark">🌙 Dark</option>
-                    </select>
-                  </span>
+                  <select
+                    value={theme}
+                    onChange={(e) => setTheme(e.target.value)}
+                    className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
+                  >
+                    <option value="light">☀️ Light</option>
+                    <option value="dark">🌙 Dark</option>
+                  </select>
+                </span>
                 </div>
                 <Player url={playing} isPlaying={isPlaying} />
               </div>
