@@ -13,6 +13,30 @@ body {
 
 .video {
   border-radius: 30rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.width {
+  @apply w-1/3 mx-auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.z9 {
+  z-index: 999999;
+}
+
+@media screen and (max-width: 767px) {
+  .width {
+    @apply w-3/4;
+  }
+}
+
+@media screen and (max-width: 1260px) and (min-width: 767px) {
+  .width {
+    @apply w-1/2;
+  }
 }
 
 input[type="range"] {
@@ -38,12 +62,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 svg {
   pointer-events: none;
-}
-
-@media screen and max-width(767px) {
-  .width {
-    width: 24px !important;
-  }
 }
 
 @media screen and (orientation: portrait) {
