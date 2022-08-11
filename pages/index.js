@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Transition } from "@headlessui/react";
 import Player from "../components/Player";
+import Link from "next/link";
 
 const data = [
   {
@@ -47,11 +48,10 @@ const data = [
   },
 ];
 
-function Card({ onClick, title, key }) {
+function Card({ onClick, title }) {
   return (
     <button
       className="px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
-      key={key}
       onClick={onClick}
     >
       {title}
@@ -108,7 +108,6 @@ export default function Home() {
         <span className="mt-6 flex flex-col space-y-4 text-left mb-3">
           {SearchFiltered.map((item) => (
             <Card
-              key={item.id}
               title={item.title}
               onClick={() => {
                 setPlaying(item.url);
@@ -135,25 +134,23 @@ export default function Home() {
           >
             <>
               <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen">
-                <div className="max-w-2xl mx-auto mt-8">
-                  <div className="my-5 flex flex-row space-x-4">
-                    <button onClick={() => setOpen(false)}>
-                      ← Back to index
-                    </button>
-                    <span className="opacity-60">Now Playing: {isPlaying}</span>
-                    <span>
-                      <select
-                        value={theme}
-                        onChange={(e) => setTheme(e.target.value)}
-                        className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
-                      >
-                        <option value="light">☀️ Light</option>
-                        <option value="dark">🌙 Dark</option>
-                      </select>
-                    </span>
-                  </div>
-                  <Player url={playing} />
+                <div className="max-w-2xl mx-auto my-5 flex flex-row space-x-4">
+                  <button onClick={() => setOpen(false)}>
+                    ← Back to index
+                  </button>
+                  <span className="opacity-60">Now Playing: {isPlaying}</span>
+                  <span>
+                    <select
+                      value={theme}
+                      onChange={(e) => setTheme(e.target.value)}
+                      className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
+                    >
+                      <option value="light">☀️ Light</option>
+                      <option value="dark">🌙 Dark</option>
+                    </select>
+                  </span>
                 </div>
+                <Player url={playing} isPlaying={isPlaying} />
               </div>
             </>
           </Transition>
