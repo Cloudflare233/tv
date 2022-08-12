@@ -206,6 +206,11 @@ class App extends React.Component {
       console.log(this.state.full);
     };
 
+    const onSpace = () =>{
+      this.setState({ playing: !this.state.playing });
+      console.log(this.state.playing);
+    }
+
     function cn(...classes) {
       return classes.filter(Boolean).join(" ");
     }
@@ -216,6 +221,7 @@ class App extends React.Component {
           className="App"
           events={{
             onEsc,
+            onSpace,
           }}
         >
           {played === 0 && loaded < 1 && (
