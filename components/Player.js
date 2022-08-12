@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useState } from "react";
 import { findDOMNode } from "react-dom";
 import { hot } from "react-hot-loader";
 import screenfull from "screenfull";
@@ -6,6 +6,7 @@ import screenfull from "screenfull";
 import ReactPlayer from "react-player";
 import { Icon } from "@iconify/react";
 import Duration from "./Duration";
+import Keyevent from "react-keyevent";
 
 class App extends React.Component {
   state = {
@@ -176,14 +177,8 @@ class App extends React.Component {
       self.setState({
         isWarning: false,
       });
-    }, 8888);
+    }, 9999);
   }
-
-  handleKeyPress = (e) => {
-    if (e.key === 27) {
-      alert("You must have pressed Esc ");
-    }
-  };
 
   render() {
     const { url } = this.props;
@@ -204,316 +199,349 @@ class App extends React.Component {
     } = this.state;
     const SEPARATOR = " · ";
 
+    const onEsc = () => {
+      console.log("ESC");
+      screenfull.exit(findDOMNode(this.bar));
+      this.setState({ full: false });
+      console.log(this.state.full);
+    };
+
     function cn(...classes) {
       return classes.filter(Boolean).join(" ");
     }
 
     return (
       <div ref={this.ref}>
-        {played === 0 && loaded < 1 && (
-          <>
-            <div className="max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
-              <div class="animate-pulse"></div>
-            </div>
+        <Keyevent
+          className="App"
+          events={{
+            onEsc,
+          }}
+        >
+          {played === 0 && loaded < 1 && (
+            <>
+              <div className="max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
+                <div class="animate-pulse"></div>
+              </div>
+              <div
+                className={cn(
+                  "width transition-all duration-500 flex flex-col space-y-2 z-30 top-[15rem] sm:top-[28.5rem] inset-x-0 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
+                )}
+              >
+                <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
+                  <div className="animate-pulse w-1/4">
+                    <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                  <div className="animate-pulse w-1/2 opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
+                    <div className="w-full px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                  <div className="animate-pulse w-1/4">
+                    <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                </div>
+                <div className="w-full flex flex-row space-x-4 mx-auto max-w-md justify-between">
+                  <div className="w-1/6 animate-pulse mt-[0.15rem]">
+                    <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                  <div className="animate-pulse w-2/3 center">
+                    <div className="w-full mx-auto px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                  <div className="w-1/6 animate-pulse mt-[0.15rem]">
+                    <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          <div
+            onTouchEnd={() => this.showSaveCover()}
+            onMouseEnter={() => this.showSaveCover()}
+            onMouseDown={() => this.showSaveCover()}
+            onClick={() => this.showSaveCover()}
+            className={cn(
+              "mx-auto animate__animated animate__fadeIn z9",
+              played === 0 && loaded < 1 ? "hidden" : "block",
+              full === false
+                ? "max-w-2xl sm:max-w-3xl "
+                : "w-screen mx-auto h-screen min-w-screen"
+            )}
+          >
+            <ReactPlayer
+              className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0 border-lg border dark:border-zinc-800"
+              style={{ zIndex: 0 }}
+              width="100%"
+              height="100%"
+              url={url}
+              pip={pip}
+              playing={playing}
+              controls={controls}
+              light={light}
+              loop={loop}
+              playbackRate={playbackRate}
+              volume={volume}
+              muted={muted}
+              onReady={() => console.log("onReady")}
+              onStart={() => console.log("onStart")}
+              onPlay={this.handlePlay}
+              onEnablePIP={this.handleEnablePIP}
+              onDisablePIP={this.handleDisablePIP}
+              onPause={this.handlePause}
+              onBuffer={() => console.log("onBuffer")}
+              onPlaybackRateChange={this.handleOnPlaybackRateChange}
+              onSeek={(e) => console.log("onSeek", e)}
+              onEnded={this.handleEnded}
+              onError={(e) => console.log("onError", e)}
+              onProgress={this.handleProgress}
+              onDuration={this.handleDuration}
+            />
+          </div>
+          {info === true ? (
             <div
               className={cn(
-                "width transition-all duration-500 flex flex-col space-y-2 z-30 top-[15rem] sm:top-[28.5rem] inset-x-0 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
+                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
+                full === false
+                  ? "max-w-2xl sm:max-w-3xl mx-auto inset-x-0"
+                  : "inset-x-0 left-0 sm:left-96"
               )}
             >
-              <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
-                <div className="animate-pulse w-1/4">
-                  <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-                <div className="animate-pulse w-1/2 opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
-                  <div className="w-full px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-                <div className="animate-pulse w-1/4">
-                  <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-              </div>
-              <div className="w-full flex flex-row space-x-4 mx-auto max-w-md justify-between">
-                <div className="w-1/6 animate-pulse mt-[0.15rem]">
-                  <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-                <div className="animate-pulse w-2/3 center">
-                  <div className="w-full mx-auto px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-                <div className="w-1/6 animate-pulse mt-[0.15rem]">
-                  <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-        <div
-          onTouchEnd={() => this.showSaveCover()}
-          onMouseEnter={() => this.showSaveCover()}
-          onMouseDown={() => this.showSaveCover()}
-          onClick={() => this.showSaveCover()}
-          className={cn(
-            "mx-auto animate__animated animate__fadeIn z9",
-            played === 0 && loaded < 1 ? "hidden" : "block",
-            full === false
-              ? "max-w-2xl sm:max-w-3xl "
-              : "w-screen mx-auto h-screen min-w-screen"
-          )}
-        >
-          <ReactPlayer
-            className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
-            style={{ zIndex: 0 }}
-            width="100%"
-            height="100%"
-            url={url}
-            pip={pip}
-            playing={playing}
-            controls={controls}
-            light={light}
-            loop={loop}
-            playbackRate={playbackRate}
-            volume={volume}
-            muted={muted}
-            onReady={() => console.log("onReady")}
-            onStart={() => console.log("onStart")}
-            onPlay={this.handlePlay}
-            onEnablePIP={this.handleEnablePIP}
-            onDisablePIP={this.handleDisablePIP}
-            onPause={this.handlePause}
-            onBuffer={() => console.log("onBuffer")}
-            onPlaybackRateChange={this.handleOnPlaybackRateChange}
-            onSeek={(e) => console.log("onSeek", e)}
-            onEnded={this.handleEnded}
-            onError={(e) => console.log("onError", e)}
-            onProgress={this.handleProgress}
-            onDuration={this.handleDuration}
-          />
-        </div>
-        {info === true ? (
-          <div
-            className={cn(
-              "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
-              full === false ? 'max-w-2xl sm:max-w-3xl mx-auto inset-x-0' : 'inset-x-0 left-0 sm:left-96'
-              )}
-          >
-            <p>Video Information:</p>
-            <p className="overflow-hidden flex flex-row flex-nowrap select-all">
-              {url}
-            </p>
-            <p className="overflow-hidden flex flex-row flex-nowrap">
-              loaded: {loaded}
-            </p>
-            <p className="overflow-hidden flex flex-row flex-nowrap">
-              played: {played}
-            </p>
-            <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
-              speed: {playbackRate}
-            </p>
-            <p>fullscreen: {full === false ? <>false</> : <>true</>}</p>
-            <p className="">loop: {loop ? <>true</> : <>false</>}</p>
-            <button onClick={this.handleToogleInfo}>
-              [x] close this video's detail page
-            </button>
-          </div>
-        ) : (
-          <></>
-        )}
-
-        <div
-          style={{ zIndex: 99999999 }}
-          className={cn(
-            "full width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
-            !!this.state.isWarning ? "" : "animate__fadeOutDown",
-            played === 0 && loaded < 1 ? "hidden" : "",
-            full === false
-              ? "top-[16rem] sm:top-[30rem]"
-              : "top-[36rem] sm:top-[56rem] inset-x-0"
-          )}
-        >
-          <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
-            <div className="flex flex-row space-x-2">
-              <button onClick={this.handleToggleMuted}>
-                {muted ? (
-                  <>
-                    <Icon
-                      className="w-4 h-4 sm:w-6 sm:h-6"
-                      icon="foundation:volume-strike"
-                    />
-                  </>
-                ) : (
-                  <>
-                    <Icon
-                      icon="foundation:volume"
-                      className="w-4 h-4 sm:w-6 sm:h-6"
-                    />
-                  </>
-                )}
-              </button>
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step="any"
-                value={volume}
-                onChange={this.handleVolumeChange}
-                className="w-12 sm:w-16 mt-2.5 sm:mt-3.5"
-              />
-            </div>
-            <div className="opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
-              {playbackRate === 0.5 && (
-                <button>
-                  <Icon
-                    className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:rewind-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 0.75 && (
-                <button onClick={this.handleSetPlaybackRate} value="0.5">
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:rewind-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 1 && (
-                <button onClick={this.handleSetPlaybackRate} value="0.75">
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:rewind-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 1.5 && (
-                <button onClick={this.handleSetPlaybackRate} value="1">
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:rewind-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 2 && (
-                <button onClick={this.handleSetPlaybackRate} value="1.5">
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:rewind-fill"
-                  />
-                </button>
-              )}
-              <button onClick={this.handlePlayPause}>
-                {playing ? (
-                  <>
-                    <Icon
-                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                      icon="clarity:pause-solid"
-                    />
-                  </>
-                ) : (
-                  <>
-                    <Icon
-                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                      icon="clarity:play-solid"
-                    />
-                  </>
-                )}
-              </button>
-              {playbackRate === 0.5 && (
-                <button onClick={this.handleSetPlaybackRate} value={0.75}>
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:fast-forward-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 0.75 && (
-                <button onClick={this.handleSetPlaybackRate} value={1}>
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:fast-forward-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 1 && (
-                <button onClick={this.handleSetPlaybackRate} value={1.5}>
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:fast-forward-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 1.5 && (
-                <button onClick={this.handleSetPlaybackRate} value={2}>
-                  <Icon
-                    className="font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:fast-forward-fill"
-                  />
-                </button>
-              )}
-              {playbackRate === 2 && (
-                <button>
-                  <Icon
-                    className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
-                    icon="bi:fast-forward-fill"
-                  />
-                </button>
-              )}
-            </div>
-            <div className="flex flex-row space-x-1.5 sm:space-x-3">
-              {full === false ? (
-                <button onClick={this.handleClickFullscreen}>
-                  <Icon
-                    className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                    icon="mdi-light:fullscreen"
-                  />
-                </button>
-              ) : (
-                <button onClick={this.handleExitFullScreen}>
-                  <Icon
-                    className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                    icon="mdi-light:fullscreen"
-                  />
-                </button>
-              )}
+              <p>Video Information:</p>
+              <p className="overflow-hidden flex flex-row flex-nowrap select-all">
+                {url}
+              </p>
+              <p className="overflow-hidden flex flex-row flex-nowrap">
+                loaded: {loaded}
+              </p>
+              <p className="overflow-hidden flex flex-row flex-nowrap">
+                played: {played}
+              </p>
+              <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
+                speed: {playbackRate}
+              </p>
+              <p>fullscreen: {full === false ? <>false</> : <>true</>}</p>
+              <p className="">loop: {loop ? <>true</> : <>false</>}</p>
               <button onClick={this.handleToogleInfo}>
-                <Icon
-                  className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                  icon="mdi-light:information"
-                />
+                [x] close this video's detail page
               </button>
-              {pip === false ? (
-                <button onClick={this.handleEnablePIP}>
-                  <Icon className="w-4 h-4 sm:w-6 sm:h-6 mt-0" icon="bi:pip" />
+            </div>
+          ) : (
+            <></>
+          )}
+          <div
+            style={{ zIndex: 99999999 }}
+            className={cn(
+              "full width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
+              !!this.state.isWarning ? "" : "animate__fadeOutDown",
+              played === 0 && loaded < 1 ? "hidden" : "",
+              full === false
+                ? "top-[16rem] sm:top-[30rem]"
+                : "top-[36rem] sm:top-[56rem] inset-x-0"
+            )}
+          >
+            <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
+              <div className="flex flex-row space-x-2">
+                <button onClick={this.handleToggleMuted}>
+                  {muted || volume === 0 ? (
+                    <>
+                      <Icon
+                        className="w-4 h-4 sm:w-6 sm:h-6"
+                        icon="foundation:volume-strike"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Icon
+                        icon="foundation:volume"
+                        className="w-4 h-4 sm:w-6 sm:h-6"
+                      />
+                    </>
+                  )}
                 </button>
-              ) : (
-                <button onClick={this.handleDisablePIP}>
-                  <Icon className="w-4 h-4 sm:w-6 sm:h-6 mt-0" icon="bi:pip" />
+                {muted === false ? (
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={volume}
+                    onChange={this.handleVolumeChange}
+                    className="volume w-12 sm:w-16 mt-2.5 sm:mt-3.5"
+                  />
+                ) : (
+                  <input
+                    type="range"
+                    min={0}
+                    max={0}
+                    step="any"
+                    value={volume}
+                    onChange={this.handleVolumeChange}
+                    className="volume w-12 sm:w-16 mt-2.5 sm:mt-3.5"
+                  />
+                )}
+              </div>
+              <div className="opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
+                {playbackRate === 0.5 && (
+                  <button>
+                    <Icon
+                      className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:rewind-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 0.75 && (
+                  <button onClick={this.handleSetPlaybackRate} value="0.5">
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:rewind-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 1 && (
+                  <button onClick={this.handleSetPlaybackRate} value="0.75">
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:rewind-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 1.5 && (
+                  <button onClick={this.handleSetPlaybackRate} value="1">
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:rewind-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 2 && (
+                  <button onClick={this.handleSetPlaybackRate} value="1.5">
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:rewind-fill"
+                    />
+                  </button>
+                )}
+                <button onClick={this.handlePlayPause}>
+                  {playing ? (
+                    <>
+                      <Icon
+                        className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                        icon="clarity:pause-solid"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Icon
+                        className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                        icon="clarity:play-solid"
+                      />
+                    </>
+                  )}
                 </button>
-              )}
+                {playbackRate === 0.5 && (
+                  <button onClick={this.handleSetPlaybackRate} value={0.75}>
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:fast-forward-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 0.75 && (
+                  <button onClick={this.handleSetPlaybackRate} value={1}>
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:fast-forward-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 1 && (
+                  <button onClick={this.handleSetPlaybackRate} value={1.5}>
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:fast-forward-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 1.5 && (
+                  <button onClick={this.handleSetPlaybackRate} value={2}>
+                    <Icon
+                      className="font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:fast-forward-fill"
+                    />
+                  </button>
+                )}
+                {playbackRate === 2 && (
+                  <button>
+                    <Icon
+                      className="opacity-50 font-bold w-6 h-6 sm:w-8 sm:h-8"
+                      icon="bi:fast-forward-fill"
+                    />
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-row space-x-1.5 sm:space-x-3">
+                {full === false ? (
+                  <button onClick={this.handleClickFullscreen}>
+                    <Icon
+                      className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                      icon="mdi-light:fullscreen"
+                    />
+                  </button>
+                ) : (
+                  <button onClick={this.handleExitFullScreen}>
+                    <Icon
+                      className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                      icon="mdi-light:fullscreen"
+                    />
+                  </button>
+                )}
+                <button onClick={this.handleToogleInfo}>
+                  <Icon
+                    className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                    icon="mdi-light:information"
+                  />
+                </button>
+                {pip === false ? (
+                  <button onClick={this.handleEnablePIP}>
+                    <Icon
+                      className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                      icon="bi:pip"
+                    />
+                  </button>
+                ) : (
+                  <button onClick={this.handleDisablePIP}>
+                    <Icon
+                      className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                      icon="bi:pip"
+                    />
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="w-full flex flex-row space-x-4 mx-auto max-w-md center justify-between">
+              <div className="mt-[0.15rem]">
+                <Duration seconds={duration * played} />
+              </div>
+              <div className="w-3/4">
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step="any"
+                  value={played}
+                  onMouseDown={this.handleSeekMouseDown}
+                  onChange={this.handleSeekChange}
+                  onMouseUp={this.handleSeekMouseUp}
+                  onTouchMove={this.handleSeekChange}
+                  onTouchStart={this.handleSeekMouseDown}
+                  onTouchEnd={this.handleSeekMouseUp}
+                  className="seek -mt-2 mb-1.5 sm:mb-3 w-full"
+                />
+              </div>
+              <div className="mt-[0.15rem]">
+                -<Duration seconds={duration * (1 - played)} />
+              </div>
             </div>
           </div>
-          <div className="w-full flex flex-row space-x-4 mx-auto max-w-md center justify-between">
-            <div className="mt-[0.15rem]">
-              <Duration seconds={duration * played} />
-            </div>
-            <div className="w-3/4">
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step="any"
-                value={played}
-                onMouseDown={this.handleSeekMouseDown}
-                onChange={this.handleSeekChange}
-                onMouseUp={this.handleSeekMouseUp}
-                onTouchMove={this.handleSeekChange}
-                onTouchStart={this.handleSeekMouseDown}
-                onTouchEnd={this.handleSeekMouseUp}
-                className="-mt-2 mb-1.5 sm:mb-3 w-full"
-              />
-            </div>
-            <div className="mt-[0.15rem]">
-              -<Duration seconds={duration * (1 - played)} />
-            </div>
-          </div>
-        </div>
+        </Keyevent>
       </div>
     );
   }

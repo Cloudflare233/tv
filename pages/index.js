@@ -8,60 +8,107 @@ const data = [
   {
     title: "L'armée française en constante évolution",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlQWFRdWg5X0RYM0trWGc_ZT1WWEVId0s.mp4",
+    tag: "top",
   },
   {
     title: "Beautiful Girl",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZhNDRMUXotX0o3a0ZlR1U_ZT1MZkl0ZTE.mp4",
+    tag: "m",
   },
   {
     title: "Good Morning",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZiU2x0X2c2Q0wzQTRUcjA_ZT1INksxbU8.mp4",
+    tag: "m",
   },
   {
     title: "Singing in the rain",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZielpORmliYnJyUllFZXc_ZT1waEhmdFI.mp4",
+    tag: "m",
   },
   {
     title: "AirCrash -ASA261",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZkOVE4d2p0aURTTXJNYlk_ZT1nSXpWYU0.jpg",
+    tag: "d",
   },
   {
     title: "Soldiers' Dance",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjeEpueVBfaDk0RC1pUVk_ZT1SWHM2Z1k.mp4",
+    tag: "g",
   },
   {
     title: "GTAIV Opening",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjYTBMdENkbGt1QTBWdTQ_ZT1HSmwxZGw.mp4",
+    tag: "g",
   },
   {
     title: "Soviet Connection",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjRkV6TWpEZ1dYMXpNRVk_ZT0yek1GTGw.mp4",
+    tag: "g",
   },
   {
     title: "GTAIV's Sounds",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1Zkbm9HVTVTa0xFRUVxU00_ZT02Y2ZQOVE.mp4",
+    tag: "g",
   },
   {
     title: "Make 'Em Laugh",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZidmI3bEYxdTB4di1yMkE_ZT1jZ1dFakY.mp4",
+    tag: "m",
   },
   {
     title: "iPhone SE 2",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjaWlVWk4ydzAtUGFDMVk_ZT1jdm1zNks.mp4",
+    tag: "ad",
   },
   {
     title: "Moses Supposes",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZiTkFqZlRSVEtXQVFJQUk_ZT16dVNrR0Y.mp4",
+    tag: "m",
   },
 ];
 
-function Card({ onClick, title }) {
+function Card({ onClick, title, tag }) {
   return (
     <button
-      className="px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
+      className="flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
       onClick={onClick}
     >
-      {title}
+      <span>{title}</span>
+      <span>
+        {tag === "top" && (
+          <div className="opacity-75 text-xs sm:text-sm">Most Popular</div>
+        )}
+        {tag === "m" && (
+          <div className="opacity-50 text-xs sm:text-sm">From Movie</div>
+        )}
+        {tag === "g" && (
+          <div className="opacity-50 text-xs sm:text-sm">From Game</div>
+        )}
+        {tag === "d" && (
+          <div className="opacity-50 text-xs sm:text-sm">Documentary</div>
+        )}
+        {tag === "ad" && (
+          <div className="opacity-50 text-xs sm:text-sm">Famous Ad</div>
+        )}
+      </span>
+    </button>
+  );
+}
+
+function Suggestion({ onClick, title, tag }) {
+  return (
+    <button
+      className="flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm sm:text-base opacity-60 font-medium transition-all duration-500 py-4"
+      onClick={onClick}
+    >
+      <span>{title}</span>
+      <span className="text-sm sm:text-base">
+        {tag === "top" && <div className="opacity-75 ">Most Popular</div>}
+        {tag === "m" && <div className="opacity-50 ">From Movie</div>}
+        {tag === "g" && <div className="opacity-50">From Game</div>}
+        {tag === "d" && <div className="opacity-50 ">Documentary</div>}
+        {tag === "ad" && <div className="opacity-50 ">Famous Ad</div>}
+      </span>
     </button>
   );
 }
@@ -72,7 +119,7 @@ function cn(...classes) {
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
-  const [style, setStyle] = useState("modern");
+  const [tag, setTag] = useState("");
   const [open, setOpen] = useState(false);
   const [playing, setPlaying] = useState("");
   const [add, setAdd] = useState(false);
@@ -117,9 +164,11 @@ export default function Home() {
             <Card
               key={item.id}
               title={item.title}
+              tag={item.tag}
               onClick={() => {
                 setPlaying(item.url);
                 setIsPlaying(item.title);
+                setTag(item.tag);
                 setOpen(true);
               }}
             />
@@ -141,26 +190,56 @@ export default function Home() {
             leaveTo="opacity-0"
           >
             <>
-              <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen">
+              <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen overflow-y-auto">
                 <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
                   <div className="my-5 flex flex-row space-x-4">
                     <button onClick={() => setOpen(false)}>
                       ← Back to index
                     </button>
                     <span className="opacity-60">Now Playing: {isPlaying}</span>
-                    <span>
-                      <select
-                        value={theme}
-                        onChange={(e) => setTheme(e.target.value)}
-                        className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
-                      >
-                        <option value="light">☀️ Light</option>
-                        <option value="dark">🌙 Dark</option>
-                      </select>
-                    </span>
+                  </div>
+                  <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-900 rounded-lg my-4 px-8 py-2">
+                    Important: If you cannot exit fullscreen, try doublepress
+                    the "ESC" or "Back" button.
                   </div>
                 </div>
                 <Player url={playing} />
+                <div className="p-4 max-w-2xl sm:max-w-3xl mx-auto">
+                  <h1 className="text-sm sm:text-base opacity-80 my-3">
+                    According to the video, you may also like:
+                  </h1>
+                  {SearchFiltered.map((item) => (
+                    <>
+                      {" "}
+                      {tag === item.tag && (
+                        <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4">
+                          <Suggestion
+                            title={item.title}
+                            tag={item.tag}
+                            onClick={() => {
+                              setPlaying(item.url);
+                              setIsPlaying(item.title);
+                              setTag(item.tag);
+                            }}
+                          />
+                        </div>
+                      )}
+                    </>
+                  ))}
+                  <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
+                    <h2 className="font-medium opacity-40 text-xs sm:text-sm">
+                      Copyright ©️ 2022 Cloudflare233.
+                    </h2>
+                    <select
+                      value={theme}
+                      onChange={(e) => setTheme(e.target.value)}
+                      className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
+                    >
+                      <option value="light">☀️ Light</option>
+                      <option value="dark">🌙 Dark</option>
+                    </select>
+                  </footer>
+                </div>
               </div>
             </>
           </Transition>
