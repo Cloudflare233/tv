@@ -11,11 +11,6 @@ const data = [
     tag: "top",
   },
   {
-    title: "The Simpsons S08E23",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlVTlxaUI5VVdMZUdhR0E_ZT11R3BHMFc.mp4",
-    tag: "top",
-  },
-  {
     title: "Beautiful Girl",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZhNDRMUXotX0o3a0ZlR1U_ZT1MZkl0ZTE.mp4",
     tag: "m",
