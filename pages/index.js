@@ -31,6 +31,21 @@ const data = [
     tag: "d",
   },
   {
+    title: "S76-B",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZmQ1RhNUFuNUVXZVZ2MEE_ZT1haXBXR0c.mp4",
+    tag: "d",
+  },
+  {
+    title: "B-2",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlZ1R0dDZRNVRWYkFDbVU_ZT1YanBRWnA.mp4",
+    tag: "d",
+  },
+  {
+    title: "KC-135",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZlME9Pd2EtYTBVcHROaTg_ZT1EZ1R5WVI.mp4",
+    tag: "d",
+  },
+  {
     title: "Soldiers' Dance",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjeEpueVBfaDk0RC1pUVk_ZT1SWHM2Z1k.mp4",
     tag: "d",
@@ -253,11 +268,11 @@ export default function Home() {
                         enemies we are facing. Russia is the same.
                       </p>
                       <p className="my-2 mb-5">
-                        ** The world is controled by 4 great groups, including the
-                        USA, the EU, Russia and China. They can have a war in
-                        the another country's places. And they called it "The Other's Attack
-                        On". But don't forget. In 1939.9.1, When Hitler attacked
-                        on Poland, it was the same.
+                        ** The world is controled by 4 great groups, including
+                        the USA, the EU, Russia and China. They can have a war
+                        in the another country's places. And they called it "The
+                        Other's Attack On". But don't forget. In 1939.9.1, When
+                        Hitler attacked on Poland, it was the same.
                       </p>
                     </div>
                   </div>
