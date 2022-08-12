@@ -339,7 +339,7 @@ class App extends React.Component {
               !!this.state.isWarning ? "" : "animate__fadeOutDown",
               played === 0 && loaded < 1 ? "hidden" : "",
               full === false
-                ? "top-[18.6rem] sm:top-[33rem]"
+                ? "top-[18rem] sm:top-[33rem]"
                 : "top-[36rem] sm:top-[56rem] inset-x-0"
             )}
           >
