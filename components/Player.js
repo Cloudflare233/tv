@@ -267,7 +267,7 @@ class App extends React.Component {
             )}
           >
             <ReactPlayer
-              className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0 border-lg border dark:border-zinc-800"
+              className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
               style={{ zIndex: 0 }}
               width="100%"
               height="100%"
