@@ -11,6 +11,11 @@ const data = [
     tag: "top",
   },
   {
+    title: "The Simpsons S08E23",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlVTlxaUI5VVdMZUdhR0E_ZT11R3BHMFc.mp4",
+    tag: "top",
+  },
+  {
     title: "Beautiful Girl",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZhNDRMUXotX0o3a0ZlR1U_ZT1MZkl0ZTE.mp4",
     tag: "m",
@@ -26,7 +31,7 @@ const data = [
     tag: "m",
   },
   {
-    title: "AirCrash -ASA261",
+    title: "Alaska Airlines Flight 261",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZkOVE4d2p0aURTTXJNYlk_ZT1nSXpWYU0.jpg",
     tag: "d",
   },
@@ -120,7 +125,7 @@ function cn(...classes) {
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [tag, setTag] = useState("");
-  const [open, setOpen] = useState(false);
+  const [openv, setOpenV] = useState(false);
   const [playing, setPlaying] = useState("");
   const [add, setAdd] = useState(false);
   const [json, setJSON] = useState("");
@@ -169,7 +174,7 @@ export default function Home() {
                 setPlaying(item.url);
                 setIsPlaying(item.title);
                 setTag(item.tag);
-                setOpen(true);
+                setOpenV(true);
               }}
             />
           ))}
@@ -179,9 +184,9 @@ export default function Home() {
             </p>
           )}
         </span>
-        {open === true && (
+        {openv === true && (
           <Transition
-            show={open}
+            show={openv}
             enter="transition-opacity duration-75"
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -193,7 +198,7 @@ export default function Home() {
               <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen overflow-y-auto">
                 <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
                   <div className="my-5 flex flex-row space-x-4">
-                    <button onClick={() => setOpen(false)}>
+                    <button onClick={() => setOpenV(false)}>
                       ← Back to index
                     </button>
                     <span className="opacity-60">Now Playing: {isPlaying}</span>
@@ -226,6 +231,41 @@ export default function Home() {
                       )}
                     </>
                   ))}
+                  <div className="my-4" />
+                  <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-900 rounded-lg my-4 px-8 py-2 mt-5">
+                    <h1 className="text-sm sm:text-base opacity-80 my-6">
+                      <span>Support Ukraine:</span>
+                      <span className="opacity-50 ml-1">
+                        Learn about the crimes* which russia army made in
+                        ukraine's whole spring and summer. It's best to sit down
+                        and discuss how to stop the war**. Because it'll make
+                        effect on global enconmy and world peace.
+                      </span>
+                      <span
+                        onClick={() => open("https://war.ukraine.ua")}
+                        className="cursor-pointer text-blue-500 ml-1"
+                      >
+                        Go to war.ukraine.ua
+                      </span>
+                      <span className="opacity-50">.</span>
+                    </h1>
+                    <div className="opacity-75">
+                      <p>
+                        * From ancient to nowadays, if a country start a war. It
+                        will be regarded as a criminal but if this country is
+                        not against with us or even is our friend. We'll call it
+                        "The hero or the first weapon". For it can effect the
+                        enemies we are facing. Russia is the same.
+                      </p>
+                      <p className="my-2 mb-5">
+                        ** The world is controled by 4 great groups, including the
+                        USA, the EU, Russia and China. They can have a war in
+                        the another country's places. And they called it "The Other's Attack
+                        On". But don't forget. In 1939.9.1, When Hitler attacked
+                        on Poland, it was the same.
+                      </p>
+                    </div>
+                  </div>
                   <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
                       Copyright ©️ 2022 Cloudflare233.
