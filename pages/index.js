@@ -6,6 +6,10 @@ import Player from "../components/Player";
 
 const data = [
   {
+    title: "L'armée française en constante évolution",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlQWFRdWg5X0RYM0trWGc_ZT1WWEVId0s.mp4",
+  },
+  {
     title: "Beautiful Girl",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZhNDRMUXotX0o3a0ZlR1U_ZT1MZkl0ZTE.mp4",
   },
