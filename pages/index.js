@@ -33,7 +33,7 @@ const data = [
   {
     title: "Soldiers' Dance",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjeEpueVBfaDk0RC1pUVk_ZT1SWHM2Z1k.mp4",
-    tag: "g",
+    tag: "d",
   },
   {
     title: "GTAIV Opening",
