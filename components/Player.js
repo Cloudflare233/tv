@@ -225,7 +225,7 @@ class App extends React.Component {
               </div>
               <div
                 className={cn(
-                  "width transition-all duration-500 flex flex-col space-y-2 z-30 top-[15rem] sm:top-[28.5rem] inset-x-0 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
+                  "width transition-all duration-500 flex flex-col space-y-2 z-30 top-[18rem] sm:top-[32rem] inset-x-0 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
                 )}
               >
                 <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
@@ -298,7 +298,7 @@ class App extends React.Component {
           {info === true ? (
             <div
               className={cn(
-                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
+                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[10rem] sm:top-[9rem] px-4 sm:px-2 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
                 full === false
                   ? "max-w-2xl sm:max-w-3xl mx-auto inset-x-0"
                   : "inset-x-0 left-0 sm:left-96"
@@ -333,7 +333,7 @@ class App extends React.Component {
               !!this.state.isWarning ? "" : "animate__fadeOutDown",
               played === 0 && loaded < 1 ? "hidden" : "",
               full === false
-                ? "top-[16rem] sm:top-[30rem]"
+                ? "top-[18.6rem] sm:top-[33rem]"
                 : "top-[36rem] sm:top-[56rem] inset-x-0"
             )}
           >

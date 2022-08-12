@@ -206,7 +206,7 @@ export default function Home() {
                 <Player url={playing} />
                 <div className="p-4 max-w-2xl sm:max-w-3xl mx-auto">
                   <h1 className="text-sm sm:text-base opacity-80 my-3">
-                    According to the video, you may also like:
+                    According to this video, you may also like:
                   </h1>
                   {SearchFiltered.map((item) => (
                     <>
