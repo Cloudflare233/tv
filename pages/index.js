@@ -226,7 +226,7 @@ export default function Home() {
                   {SearchFiltered.map((item) => (
                     <>
                       {" "}
-                      {tag === item.tag && (
+                      {tag === item.tag && isPlaying !== item.title && (
                         <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4">
                           <Suggestion
                             title={item.title}
@@ -241,6 +241,7 @@ export default function Home() {
                       )}
                     </>
                   ))}
+                  <div className="opacity-50 my-4 px-4 py-4 border-b dark:border-b-zinc-800">Already displayed all the results.</div>
                   <div className="my-4" />
                   <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-900 rounded-lg my-4 px-8 py-2 mt-5">
                     <h1 className="text-sm sm:text-base opacity-80 my-6">
