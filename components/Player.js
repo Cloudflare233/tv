@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect } from "react";
 import { findDOMNode } from "react-dom";
 import { hot } from "react-hot-loader";
 import screenfull from "screenfull";
@@ -7,7 +7,7 @@ import ReactPlayer from "react-player";
 import { Icon } from "@iconify/react";
 import Duration from "./Duration";
 
-class App extends Component {
+class App extends React.Component {
   state = {
     url: null,
     pip: false,
@@ -22,6 +22,7 @@ class App extends Component {
     playbackRate: 1.0,
     loop: false,
     info: false,
+    full: false,
   };
 
   load = (url) => {
@@ -136,15 +137,23 @@ class App extends Component {
   };
 
   handleClickFullscreen = () => {
-    screenfull.request(findDOMNode(this.player));
+    screenfull.request(findDOMNode(this.bar));
+    this.setState({ full: true });
+    console.log(this.state.full);
+  };
+
+  handleExitFullScreen = () => {
+    screenfull.exit(findDOMNode(this.bar));
+    this.setState({ full: false });
+    console.log(this.state.full);
   };
 
   renderLoadButton = (url, label) => {
     return <button onClick={() => this.load(url)}>{label}</button>;
   };
 
-  ref = (player) => {
-    this.player = player;
+  ref = (bar) => {
+    this.bar = bar;
   };
 
   componentDidMount() {
@@ -170,6 +179,12 @@ class App extends Component {
     }, 8888);
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 27) {
+      alert("You must have pressed Esc ");
+    }
+  };
+
   render() {
     const { url } = this.props;
     const {
@@ -185,6 +200,7 @@ class App extends Component {
       playbackRate,
       pip,
       info,
+      full,
     } = this.state;
     const SEPARATOR = " · ";
 
@@ -193,10 +209,10 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div ref={this.ref}>
         {played === 0 && loaded < 1 && (
           <>
-            <div className="mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
+            <div className="max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
               <div class="animate-pulse"></div>
             </div>
             <div
@@ -232,15 +248,19 @@ class App extends Component {
         <div
           onTouchEnd={() => this.showSaveCover()}
           onMouseEnter={() => this.showSaveCover()}
+          onMouseDown={() => this.showSaveCover()}
+          onClick={() => this.showSaveCover()}
           className={cn(
-            "animate__animated animate__fadeIn z9",
-            played === 0 && loaded < 1 ? "hidden" : "block"
+            "mx-auto animate__animated animate__fadeIn z9",
+            played === 0 && loaded < 1 ? "hidden" : "block",
+            full === false
+              ? "max-w-2xl sm:max-w-3xl "
+              : "w-screen mx-auto h-screen min-w-screen"
           )}
         >
           <ReactPlayer
-            ref={this.ref}
-            className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-50"
-            style={{ zIndex: 999999}}
+            className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
+            style={{ zIndex: 0 }}
             width="100%"
             height="100%"
             url={url}
@@ -268,7 +288,12 @@ class App extends Component {
           />
         </div>
         {info === true ? (
-          <div className="text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxedw-2/3 sm:w-1/3">
+          <div
+            className={cn(
+              "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[5.75rem] sm:top-[7.5rem] px-4 sm:px-12 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
+              full === false ? 'max-w-2xl sm:max-w-3xl mx-auto inset-x-0' : 'inset-x-0 left-0 sm:left-96'
+              )}
+          >
             <p>Video Information:</p>
             <p className="overflow-hidden flex flex-row flex-nowrap select-all">
               {url}
@@ -282,6 +307,7 @@ class App extends Component {
             <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
               speed: {playbackRate}
             </p>
+            <p>fullscreen: {full === false ? <>false</> : <>true</>}</p>
             <p className="">loop: {loop ? <>true</> : <>false</>}</p>
             <button onClick={this.handleToogleInfo}>
               [x] close this video's detail page
@@ -292,10 +318,14 @@ class App extends Component {
         )}
 
         <div
+          style={{ zIndex: 99999999 }}
           className={cn(
-            "width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 top-[16rem] sm:top-[30rem] backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
+            "full width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
             !!this.state.isWarning ? "" : "animate__fadeOutDown",
-            played === 0 && loaded < 1 ? "hidden" : ""
+            played === 0 && loaded < 1 ? "hidden" : "",
+            full === false
+              ? "top-[16rem] sm:top-[30rem]"
+              : "top-[36rem] sm:top-[56rem] inset-x-0"
           )}
         >
           <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
@@ -427,12 +457,21 @@ class App extends Component {
               )}
             </div>
             <div className="flex flex-row space-x-1.5 sm:space-x-3">
-              <button onClick={this.handleClickFullscreen}>
-                <Icon
-                  className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                  icon="mdi-light:fullscreen"
-                />
-              </button>
+              {full === false ? (
+                <button onClick={this.handleClickFullscreen}>
+                  <Icon
+                    className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                    icon="mdi-light:fullscreen"
+                  />
+                </button>
+              ) : (
+                <button onClick={this.handleExitFullScreen}>
+                  <Icon
+                    className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
+                    icon="mdi-light:fullscreen"
+                  />
+                </button>
+              )}
               <button onClick={this.handleToogleInfo}>
                 <Icon
                   className="w-4 h-4 sm:w-6 sm:h-6 mt-0"

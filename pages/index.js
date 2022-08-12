@@ -138,7 +138,7 @@ export default function Home() {
           >
             <>
               <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen">
-                <div className="max-w-2xl mx-auto mt-8">
+                <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
                   <div className="my-5 flex flex-row space-x-4">
                     <button onClick={() => setOpen(false)}>
                       ← Back to index
@@ -155,8 +155,8 @@ export default function Home() {
                       </select>
                     </span>
                   </div>
-                  <Player url={playing} />
                 </div>
+                <Player url={playing} />
               </div>
             </>
           </Transition>
