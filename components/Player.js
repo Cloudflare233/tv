@@ -138,13 +138,15 @@ class App extends React.Component {
   };
 
   handleClickFullscreen = () => {
-    screenfull.request(findDOMNode(this.bar));
+    var bar = document.getElementById("bar");
+    screenfull.request(findDOMNode(bar));
     this.setState({ full: true });
     console.log(this.state.full);
+    console.log(findDOMNode("bar"));
   };
 
   handleExitFullScreen = () => {
-    screenfull.exit(findDOMNode(this.bar));
+    screenfull.exit(findDOMNode(this.player));
     this.setState({ full: false });
     console.log(this.state.full);
   };
@@ -153,8 +155,12 @@ class App extends React.Component {
     return <button onClick={() => this.load(url)}>{label}</button>;
   };
 
-  ref = (bar) => {
-    this.bar = bar;
+  ref = (player) => {
+    this.player = player;
+  };
+
+  ref = (player) => {
+    this.player = player;
   };
 
   componentDidMount() {
@@ -206,17 +212,17 @@ class App extends React.Component {
       console.log(this.state.full);
     };
 
-    const onSpace = () =>{
+    const onSpace = () => {
       this.setState({ playing: !this.state.playing });
       console.log(this.state.playing);
-    }
+    };
 
     function cn(...classes) {
       return classes.filter(Boolean).join(" ");
     }
 
     return (
-      <div ref={this.ref}>
+      <div id="bar">
         <Keyevent
           className="App"
           events={{
@@ -273,6 +279,7 @@ class App extends React.Component {
             )}
           >
             <ReactPlayer
+              ref={this.ref}
               className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
               style={{ zIndex: 0 }}
               width="100%"
@@ -539,7 +546,7 @@ class App extends React.Component {
                   onTouchMove={this.handleSeekChange}
                   onTouchStart={this.handleSeekMouseDown}
                   onTouchEnd={this.handleSeekMouseUp}
-                  className="seek -mt-2 mb-1.5 sm:mb-3 w-full"
+                  className="-mt-2 mb-1.5 sm:mb-3 w-full"
                 />
               </div>
               <div className="mt-[0.15rem]">
