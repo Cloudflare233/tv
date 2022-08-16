@@ -91,7 +91,7 @@ function Card({ onClick, title, tag }) {
       <span className="flex flex-row space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 mr-2"
+          className="opacity-75 h-5 w-5 mr-2"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -133,7 +133,7 @@ function Suggestion({ onClick, title, tag }) {
       <span className="flex flex-row space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 mr-2 mt-0 sm:mt-0.5"
+          className="opacity-75 h-5 w-5 mr-2 mt-0 sm:mt-0.5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
