@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.skeleton {
+  @apply bg-zinc-100 dark:bg-zinc-900;
+  animation: opacity 3s ease infinite;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}

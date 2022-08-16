@@ -232,37 +232,7 @@ class App extends React.Component {
         >
           {played === 0 && loaded < 1 && (
             <>
-              <div className="max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] bg-zinc-50 dark:bg-neutral-900/40 rounded-lg">
-                <div class="animate-pulse"></div>
-              </div>
-              <div
-                className={cn(
-                  "width transition-all duration-500 flex flex-col space-y-2 z-30 top-[18rem] sm:top-[32rem] inset-x-0 mx-auto backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900"
-                )}
-              >
-                <div className="z-40 mx-auto flex flex-row justify-between space-x-4 sm:space-x-6">
-                  <div className="animate-pulse w-1/4">
-                    <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                  <div className="animate-pulse w-1/2 opacity-75 flex flex-row space-x-2 sm:space-x-4 text-xs sm:text-sm">
-                    <div className="w-full px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                  <div className="animate-pulse w-1/4">
-                    <div className="w-full px-6 sm:px-12 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                </div>
-                <div className="w-full flex flex-row space-x-4 mx-auto max-w-md justify-between">
-                  <div className="w-1/6 animate-pulse mt-[0.15rem]">
-                    <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                  <div className="animate-pulse w-2/3 center">
-                    <div className="w-full mx-auto px-12 sm:px-24 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                  <div className="w-1/6 animate-pulse mt-[0.15rem]">
-                    <div className="w-full px-4 sm:px-8 py-3 sm:py-4 rounded-lg bg-zinc-200 dark:bg-zinc-800"></div>
-                  </div>
-                </div>
-              </div>
+              <div className="skeleton max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] rounded-lg"></div>
             </>
           )}
           <div
@@ -516,14 +486,14 @@ class App extends React.Component {
                   <button onClick={this.handleEnablePIP}>
                     <Icon
                       className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                      icon="bi:pip"
+                      icon="mdi-light:pin"
                     />
                   </button>
                 ) : (
                   <button onClick={this.handleDisablePIP}>
                     <Icon
                       className="w-4 h-4 sm:w-6 sm:h-6 mt-0"
-                      icon="bi:pip"
+                      icon="mdi-light:pin-off"
                     />
                   </button>
                 )}

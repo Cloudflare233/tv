@@ -6,7 +6,7 @@ import Player from "../components/Player";
 
 const data = [
   {
-    title: "L'armée française en constante évolution",
+    title: "百 变 法 君",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlQWFRdWg5X0RYM0trWGc_ZT1WWEVId0s.mp4",
     tag: "top",
   },
@@ -85,10 +85,24 @@ const data = [
 function Card({ onClick, title, tag }) {
   return (
     <button
-      className="flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
+      className="hover:scale-[1.015] flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
       onClick={onClick}
     >
-      <span>{title}</span>
+      <span className="flex flex-row space-x-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 mr-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+            clipRule="evenodd"
+          />
+        </svg>
+        {title}
+      </span>
       <span>
         {tag === "top" && (
           <div className="opacity-75 text-xs sm:text-sm">Most Popular</div>
@@ -113,10 +127,24 @@ function Card({ onClick, title, tag }) {
 function Suggestion({ onClick, title, tag }) {
   return (
     <button
-      className="flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm sm:text-base opacity-60 font-medium transition-all duration-500 py-4"
+      className="hover:scale-[1.015] flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm sm:text-base opacity-60 font-medium transition-all duration-500 py-4"
       onClick={onClick}
     >
-      <span>{title}</span>
+      <span className="flex flex-row space-x-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 mr-2 mt-0 sm:mt-0.5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+            clipRule="evenodd"
+          />
+        </svg>
+        {title}
+      </span>
       <span className="text-sm sm:text-base">
         {tag === "top" && <div className="opacity-75 ">Most Popular</div>}
         {tag === "m" && <div className="opacity-50 ">From Movie</div>}
@@ -241,42 +269,10 @@ export default function Home() {
                       )}
                     </>
                   ))}
-                  <div className="opacity-50 my-4 px-4 py-4 border-b dark:border-b-zinc-800">Already displayed all the results.</div>
-                  <div className="my-4" />
-                  <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-900 rounded-lg my-4 px-8 py-2 mt-5">
-                    <h1 className="text-sm sm:text-base opacity-80 my-6">
-                      <span>Support Ukraine:</span>
-                      <span className="opacity-50 ml-1">
-                        Learn about the crimes* which russia army made in
-                        ukraine's whole spring and summer. It's best to sit down
-                        and discuss how to stop the war**. Because it'll make
-                        effect on global enconmy and world peace.
-                      </span>
-                      <span
-                        onClick={() => open("https://war.ukraine.ua")}
-                        className="cursor-pointer text-blue-500 ml-1"
-                      >
-                        Go to war.ukraine.ua
-                      </span>
-                      <span className="opacity-50">.</span>
-                    </h1>
-                    <div className="opacity-75">
-                      <p>
-                        * From ancient to nowadays, if a country start a war. It
-                        will be regarded as a criminal but if this country is
-                        not against with us or even is our friend. We'll call it
-                        "The hero or the first weapon". For it can effect the
-                        enemies we are facing. Russia is the same.
-                      </p>
-                      <p className="my-2 mb-5">
-                        ** The world is controled by 4 great groups, including
-                        the USA, the EU, Russia and China. They can have a war
-                        in the another country's places. And they called it "The
-                        Other's Attack On". But don't forget. In 1939.9.1, When
-                        Hitler attacked on Poland, it was the same.
-                      </p>
-                    </div>
+                  <div className="opacity-50 my-2 px-2 py-4 border-b dark:border-b-zinc-800">
+                    Already displayed all the results.
                   </div>
+                  <div className="my-4" />
                   <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
                       Copyright ©️ 2022 Cloudflare233.
