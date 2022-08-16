@@ -8,7 +8,7 @@ const data = [
   {
     title: "百 变 法 君",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlQWFRdWg5X0RYM0trWGc_ZT1WWEVId0s.mp4",
-    tag: "top",
+    tag: "f",
   },
   {
     title: "Beautiful Girl",
@@ -73,7 +73,7 @@ const data = [
   {
     title: "iPhone SE 2",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjaWlVWk4ydzAtUGFDMVk_ZT1jdm1zNks.mp4",
-    tag: "ad",
+    tag: "f",
   },
   {
     title: "Moses Supposes",
@@ -82,11 +82,12 @@ const data = [
   },
 ];
 
-function Card({ onClick, title, tag }) {
+function Card({ onClick, title, tag, key }) {
   return (
     <button
       className="hover:scale-[1.015] flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm opacity-80 font-medium transition-all duration-500 py-3"
       onClick={onClick}
+      key={key}
     >
       <span className="flex flex-row space-x-4">
         <svg
@@ -116,19 +117,20 @@ function Card({ onClick, title, tag }) {
         {tag === "d" && (
           <div className="opacity-50 text-xs sm:text-sm">Documentary</div>
         )}
-        {tag === "ad" && (
-          <div className="opacity-50 text-xs sm:text-sm">Famous Ad</div>
+        {tag === "f" && (
+          <div className="opacity-50 text-xs sm:text-sm">Famous</div>
         )}
       </span>
     </button>
   );
 }
 
-function Suggestion({ onClick, title, tag }) {
+function Suggestion({ onClick, title, tag, key }) {
   return (
     <button
       className="hover:scale-[1.015] flex flex-row justify-between px-3 border-b dark:border-b-zinc-800 text-left text-sm sm:text-base opacity-60 font-medium transition-all duration-500 py-4"
       onClick={onClick}
+      key={key}
     >
       <span className="flex flex-row space-x-4">
         <svg
@@ -150,7 +152,7 @@ function Suggestion({ onClick, title, tag }) {
         {tag === "m" && <div className="opacity-50 ">From Movie</div>}
         {tag === "g" && <div className="opacity-50">From Game</div>}
         {tag === "d" && <div className="opacity-50 ">Documentary</div>}
-        {tag === "ad" && <div className="opacity-50 ">Famous Ad</div>}
+        {tag === "f" && <div className="opacity-50 ">Famous</div>}
       </span>
     </button>
   );
@@ -205,7 +207,7 @@ export default function Home() {
         <span className="mt-6 flex flex-col space-y-4 text-left mb-3">
           {SearchFiltered.map((item) => (
             <Card
-              key={item.id}
+              key={item.url}
               title={item.title}
               tag={item.tag}
               onClick={() => {
@@ -248,7 +250,7 @@ export default function Home() {
                 </div>
                 <Player url={playing} />
                 <div className="p-4 max-w-2xl sm:max-w-3xl mx-auto">
-                  <h1 className="text-sm sm:text-base opacity-80 my-3">
+                  <h1 className="text-sm sm:text-base opacity-60 my-3">
                     According to this video, you may also like:
                   </h1>
                   {SearchFiltered.map((item) => (
@@ -259,6 +261,7 @@ export default function Home() {
                           <Suggestion
                             title={item.title}
                             tag={item.tag}
+                            key={item.url}
                             onClick={() => {
                               setPlaying(item.url);
                               setIsPlaying(item.title);
@@ -269,9 +272,6 @@ export default function Home() {
                       )}
                     </>
                   ))}
-                  <div className="opacity-50 my-2 px-2 py-4 border-b dark:border-b-zinc-800">
-                    Already displayed all the results.
-                  </div>
                   <div className="my-4" />
                   <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
