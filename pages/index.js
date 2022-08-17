@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Transition } from "@headlessui/react";
 import Player from "../components/Player";
+import Link from "next/link";
 
 const data = [
   {
@@ -167,12 +168,9 @@ export default function Home() {
   const [tag, setTag] = useState("");
   const [openv, setOpenV] = useState(false);
   const [playing, setPlaying] = useState("");
-  const [add, setAdd] = useState(false);
-  const [json, setJSON] = useState("");
   const [isPlaying, setIsPlaying] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [addl, setAddl] = useState(false);
-  const [playValue, setPlayValue] = useState("/tno.ogg");
+  const [donate, setDonate] = useState(true);
   const SearchFiltered = data.filter((data) =>
     data.title.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -182,7 +180,98 @@ export default function Home() {
         <Head>
           <title>TV | Cloudflare233</title>
         </Head>
-        <h1 className="font-medium text-3xl sm:text-4xl mb-2">TV</h1>
+        <h1 className="text-center font-black text-2xl sm:text-3xl mb-2">
+          TV.CF233.GA
+        </h1>
+        <div
+          className={cn(
+            "text-sm flex flex-row space-x-4 justify-center bg-white dark:bg-black  border-b py-3 z-50 dark:border-b-zinc-800 sticky top-0",
+            openv === false ? "block" : "hidden"
+          )}
+        >
+          <button
+            onClick={() => open("https://cf233.ga")}
+            className="opacity-60 transition-all duration-500 hover:scale-[1.02] hover:opacity-100"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => open("https://blog.cf233.ga")}
+            className="opacity-60 transition-all duration-500 hover:scale-[1.02] hover:opacity-100"
+          >
+            Blog
+          </button>
+          <button
+            onClick={() => open("https://music.cf233.ga")}
+            className="opacity-60 transition-all duration-500 hover:scale-[1.02] hover:opacity-100"
+          >
+            Music
+          </button>
+          <button className="opacity-100 hover:scale-[1.02] transition-all duration-500">
+            TV
+          </button>
+          <button
+            className="opacity-60 transition-all duration-500 hover:scale-[1.02] hover:opacity-100"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {theme === "dark" ? <>Light</> : <>Dark</>}
+          </button>
+        </div>
+        {donate === true && (
+          <div
+            className={cn(
+              "sticky top-[2.55rem] py-1 border-b dark:border-b-zinc-800 bg-white dark:bg-black z-50",
+              openv === false ? "block" : "hidden"
+            )}
+          >
+            <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
+              <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-zinc-50 dark:bg-zinc-900 p-4 sm:p-8 my-4">
+                <img
+                  src="/ukraine.png"
+                  className="block dark:hidden w-32 mx-auto sm:w-48"
+                />
+                <img
+                  src="/ukraine_dark.png"
+                  className="hidden dark:inline w-32 mx-auto sm:w-48"
+                />
+                <span className="text-xs sm:text-sm text-blue-500 underline">
+                  Donate to support families affected by the war in Ukraine,
+                  Fight for freedom ↗
+                </span>
+              </div>
+            </Link>
+            <button onClick={() => setDonate(false)}>
+              <span className="absolute -mt-36 right-8 text-sm  sm:text-base opacity-50">
+                [x]
+              </span>
+            </button>
+          </div>
+        )}
+        {donate === false && (
+          <div
+            onClick={() => setDonate(true)}
+            className={cn(
+              "cursor-pointer flex flex-row justify-center mx-auto inset-x-0 sticky top-[2.55rem] border-b dark:border-b-zinc-800 py-2 text-xs sm:text-sm dark:text-zinc-400 text-zinc-600 bg-white dark:bg-black z-50",
+              openv === false ? "block" : "hidden"
+            )}
+          >
+            🇺🇦 Support the war in ukraine, fight for freedom.
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 sm:w-5 sm:h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        )}
         <div className="bg-white dark:bg-black flex opacity-100 flex-row py-0 sm:py-1 border-b dark:border-b-zinc-800 w-full z-20">
           <svg
             xmlns="http://www.w3.org/2000/svg"
