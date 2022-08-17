@@ -225,14 +225,10 @@ export default function Home() {
             )}
           >
             <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
-              <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-zinc-50 dark:bg-zinc-900 p-4 sm:p-8 my-4">
+              <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-4 sm:p-8 my-4">
                 <img
-                  src="/ukraine.png"
-                  className="block dark:hidden w-32 mx-auto sm:w-48"
-                />
-                <img
-                  src="/ukraine_dark.png"
-                  className="hidden dark:inline w-32 mx-auto sm:w-48"
+                  src={theme === "light" ? "/ukraine.png" : "/ukraine_dark.png"}
+                  className="w-36 mx-auto sm:w-48"
                 />
                 <span className="text-xs sm:text-sm text-blue-500 underline">
                   Donate to support families affected by the war in Ukraine,
@@ -362,6 +358,22 @@ export default function Home() {
                     </>
                   ))}
                   <div className="my-4" />
+                  <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
+                    <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-4 sm:p-8 my-4">
+                      <img
+                        src={
+                          theme === "light"
+                            ? "/ukraine.png"
+                            : "/ukraine_dark.png"
+                        }
+                        className="w-36 mx-auto sm:w-48"
+                      />
+                      <span className="text-xs sm:text-sm text-blue-500 underline">
+                        Donate to support families affected by the war in
+                        Ukraine, Fight for freedom ↗
+                      </span>
+                    </div>
+                  </Link>
                   <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
                     <h2 className="font-medium opacity-40 text-xs sm:text-sm">
                       Copyright ©️ 2022 Cloudflare233.
