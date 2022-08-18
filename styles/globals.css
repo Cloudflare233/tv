@@ -13,7 +13,7 @@ html {
 }
 
 @font-face {
-  font-family: "IBM Plex Sans Blod";
+  font-family: "IBM Plex Sans Bold";
   src: url("/IBMPlexSans-Bold.woff2") format("woff2");
 }
 
@@ -28,7 +28,7 @@ h4,
 h5,
 h6 {
   font-family: "IBM Plex Sans Bold", sans-serif;
-  @apply -mt-4 -mb-4;
+  @apply -mt-4 -mb-4 font-semibold;
 }
 
 .center {

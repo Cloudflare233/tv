@@ -335,9 +335,9 @@ export default function Home() {
                 </div>
                 <Player url={playing} />
                 <div className="p-4 max-w-2xl sm:max-w-3xl mx-auto">
-                  <h1 className="text-sm sm:text-base opacity-60 my-3">
+                  <p className="text-sm sm:text-base opacity-60 my-3">
                     According to this video, you may also like:
-                  </h1>
+                  </p>
                   {SearchFiltered.map((item) => (
                     <>
                       {" "}
