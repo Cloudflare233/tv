@@ -232,7 +232,7 @@ class App extends React.Component {
         >
           {played === 0 && loaded < 1 && (
             <>
-              <div className="skeleton max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] rounded-lg"></div>
+              <div className="border dark:border-zinc-800 skeleton max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] rounded-lg"></div>
             </>
           )}
           <div
@@ -241,7 +241,7 @@ class App extends React.Component {
             onMouseDown={() => this.showSaveCover()}
             onClick={() => this.showSaveCover()}
             className={cn(
-              "mx-auto animate__animated animate__fadeIn z9",
+              "mx-auto animate__animated animate__fadeIn z9 rounded-lg p-2 border dark:border-zinc-800",
               played === 0 && loaded < 1 ? "hidden" : "block",
               full === false
                 ? "max-w-2xl sm:max-w-3xl "
@@ -251,7 +251,6 @@ class App extends React.Component {
             <ReactPlayer
               ref={this.ref}
               className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
-              style={{ zIndex: 0 }}
               width="100%"
               height="100%"
               url={url}
@@ -281,7 +280,7 @@ class App extends React.Component {
           {info === true ? (
             <div
               className={cn(
-                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[10rem] sm:top-[9rem] px-4 sm:px-2 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
+                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[12rem] sm:top-[14rem] px-4 sm:px-2 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
                 full === false
                   ? "max-w-2xl sm:max-w-3xl mx-auto inset-x-0"
                   : "inset-x-0 left-0 sm:left-96"

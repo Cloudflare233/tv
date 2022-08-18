@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Transition } from "@headlessui/react";
 import Player from "../components/Player";
 import Link from "next/link";
+import Utterances from "utterances-react";
 
 const data = [
   {
@@ -176,6 +177,7 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [donate, setDonate] = useState(true);
+  const [loading, setLoading] = useState(true);
   const SearchFiltered = data.filter((data) =>
     data.title.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -327,7 +329,7 @@ export default function Home() {
             <>
               <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen overflow-y-auto">
                 <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
-                  <div className="my-5 flex flex-row space-x-4">
+                  <div className="my-5 flex flex-row space-x-4 border-b dark:border-b-zinc-800 py-3">
                     <button onClick={() => setOpenV(false)}>
                       ← Back to index
                     </button>
@@ -339,32 +341,63 @@ export default function Home() {
                   </div>
                 </div>
                 <Player url={playing} />
-                <div className="p-4 max-w-2xl sm:max-w-3xl mx-auto">
-                  <p className="text-sm sm:text-base opacity-60 my-3">
-                    According to this video, you may also like:
-                  </p>
-                  {SearchFiltered.map((item) => (
-                    <>
-                      {" "}
-                      {tag === item.tag && isPlaying !== item.title && (
-                        <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4">
-                          <Suggestion
-                            title={item.title}
-                            tag={item.tag}
-                            key={item.url}
-                            onClick={() => {
-                              setPlaying(item.url);
-                              setIsPlaying(item.title);
-                              setTag(item.tag);
-                            }}
-                          />
-                        </div>
-                      )}
-                    </>
-                  ))}
-                  <div className="my-4" />
+                <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
+                  <div className="rounded-lg border dark:border-zinc-800 px-2 sm:px-8 py-2">
+                    <p className="text-sm sm:text-base opacity-60 my-3 px-3">
+                      According to this video, you may also like:
+                    </p>
+                    {SearchFiltered.map((item) => (
+                      <>
+                        {" "}
+                        {tag === item.tag && isPlaying !== item.title && (
+                          <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4">
+                            <Suggestion
+                              title={item.title}
+                              tag={item.tag}
+                              key={item.url}
+                              onClick={() => {
+                                setPlaying(item.url);
+                                setIsPlaying(item.title);
+                                setTag(item.tag);
+                              }}
+                            />
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                  <div className="my-8" />
+                  <div className="rounded-lg border p-2 sm:p-4 dark:border-zinc-800 min-h-[286px] animate__animated animate__fadeIn transition-all duration-500">
+                    <p className="text-sm sm:text-base opacity-60 my-3 px-6">
+                      Leave a Feedback (add @movie-name if you want to jundge a
+                      movie):
+                    </p>
+                    {theme === "light" && (
+                      <Utterances
+                        repo="cloudflare233/tv"
+                        issueTerm="pathname"
+                        theme="github-light"
+                        label=""
+                        crossorigin="anonymous"
+                        async={false}
+                        className="z-10"
+                      />
+                    )}
+                    {theme === "dark" && (
+                      <Utterances
+                        repo="cloudflare233/tv"
+                        issueTerm="pathname"
+                        theme="github-dark"
+                        label=""
+                        crossorigin="anonymous"
+                        async={false}
+                        className="z-10"
+                      />
+                    )}
+                  </div>
+                  <div className="my-8" />
                   <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
-                    <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-4 sm:p-8 my-4">
+                    <div className="rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-8 sm:p-24 my-4">
                       <img
                         src={
                           theme === "light"

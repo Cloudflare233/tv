@@ -5,10 +5,18 @@ import "normalize.css/normalize.css";
 import "@fontsource/ibm-plex-sans";
 import { ThemeProvider } from "next-themes";
 import { PageTransition } from "next-page-transitions";
+import { useState, useEffect } from "react";
 
 const TIMEOUT = 400;
 
 function MyApp({ Component, pageProps }) {
+  const [showChild, setShowChild] = useState(false);
+  useEffect(() => {
+    setShowChild(true);
+  }, []);
+  if (!showChild) {
+    return null;
+  }
   return (
     <>
       <PageTransition
