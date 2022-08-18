@@ -79,7 +79,7 @@ const data = [
   },
   {
     title: "GTAIV Opening",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjYTBMdENkbGt1QTBWdTQ_ZT1HSmwxZGw.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnU0dDd0dhRlkwNUYwMzVSP2U9VXRXdXY4.mp4",
     tag: "g",
   },
   {
