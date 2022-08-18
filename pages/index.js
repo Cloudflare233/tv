@@ -8,48 +8,73 @@ import Link from "next/link";
 const data = [
   {
     title: "百 变 法 君",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlQWFRdWg5X0RYM0trWGc_ZT1WWEVId0s.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUlk5N09OLU5Xc3BxN2hFP2U9alk5YXhQ.mp4",
     tag: "f",
   },
   {
+    title: "iPhone SE 2",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjaWlVWk4ydzAtUGFDMVk_ZT1jdm1zNks.mp4",
+    tag: "f",
+  },
+  {
+    title: "The Street of World War II",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnU0t2MFg5RHFPamlOd3lCP2U9OTluZFRq.mp4",
+    tag: "f",
+  },
+  {
+    title: "You Were Meant for Me",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUjdVX21XRzJjUjBuenZBP2U9cDBjZlNz.mp4",
+    tag: "m",
+  },
+  {
     title: "Beautiful Girl",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZhNDRMUXotX0o3a0ZlR1U_ZT1MZkl0ZTE.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUnJVc3BlNk9KQ2hDRFd1P2U9MGdBMWZm.mp4",
     tag: "m",
   },
   {
     title: "Good Morning",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZiU2x0X2c2Q0wzQTRUcjA_ZT1INksxbU8.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUnV5cmdVejA4OVZkRS1YP2U9RVlBdWRs.mp4",
     tag: "m",
   },
   {
     title: "Singing in the rain",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZielpORmliYnJyUllFZXc_ZT1waEhmdFI.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUjIxVE1Nc2dJb01vck5DP2U9dlcxWk1B.mp4",
+    tag: "m",
+  },
+  {
+    title: "Make 'Em Laugh",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUnlCai1ZaUh6cXlGRGZzP2U9VHFDRGpn.mp4",
+    tag: "m",
+  },
+  {
+    title: "Moses Supposes",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUmpUT0dPbFVTamw5RE1rP2U9S093eEV3.mp4",
     tag: "m",
   },
   {
     title: "Alaska Airlines Flight 261",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZkOVE4d2p0aURTTXJNYlk_ZT1nSXpWYU0.jpg",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUmRaUzZMRzh3ZTlxVTlCP2U9blNzN0Ny.mp4",
     tag: "d",
   },
   {
     title: "S76-B",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZmQ1RhNUFuNUVXZVZ2MEE_ZT1haXBXR0c.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUlhpeWdGUGdJT3ZCRVREP2U9QlhVeFVv.mp4",
     tag: "d",
   },
   {
     title: "B-2",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZlZ1R0dDZRNVRWYkFDbVU_ZT1YanBRWnA.mp4",
-    tag: "d",
-  },
-  {
-    title: "KC-135",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZlME9Pd2EtYTBVcHROaTg_ZT1EZ1R5WVI.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUl9HcEU0MjlqSzZMaHlMP2U9MzFncWM1.mp4",
     tag: "d",
   },
   {
     title: "Soldiers' Dance",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjeEpueVBfaDk0RC1pUVk_ZT1SWHM2Z1k.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnUl9HcEU0MjlqSzZMaHlMP2U9RW03WXFN.mp4",
     tag: "d",
+  },
+  {
+    title: "Fastest Complete GTAIV's Missions",
+    url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8ydHFjc3YtbXkuc2hhcmVwb2ludC5jb20vOnY6L2cvcGVyc29uYWwvYW5kcmV3XzJ0cWNzdl9vbm1pY3Jvc29mdF9jb20vRVRLeTlhcWRXSmRJc25UbjNnLVAzeWtCcHBfb3M1RGxCZ2VOZU9PMHdxTWtwdz9lPTIxcXZ4Yw.mp4",
+    tag: "g",
   },
   {
     title: "GTAIV Opening",
@@ -58,28 +83,8 @@ const data = [
   },
   {
     title: "Soviet Connection",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjRkV6TWpEZ1dYMXpNRVk_ZT0yek1GTGw.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnU0JFemVrU1JOd3MybWRGP2U9WEdrdHBG.mp4",
     tag: "g",
-  },
-  {
-    title: "GTAIV's Sounds",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1Zkbm9HVTVTa0xFRUVxU00_ZT02Y2ZQOVE.mp4",
-    tag: "g",
-  },
-  {
-    title: "Make 'Em Laugh",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZidmI3bEYxdTB4di1yMkE_ZT1jZ1dFakY.mp4",
-    tag: "m",
-  },
-  {
-    title: "iPhone SE 2",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjaWlVWk4ydzAtUGFDMVk_ZT1jdm1zNks.mp4",
-    tag: "f",
-  },
-  {
-    title: "Moses Supposes",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBaUV0TzBwNnFvZ1ZiTkFqZlRSVEtXQVFJQUk_ZT16dVNrR0Y.mp4",
-    tag: "m",
   },
 ];
 
@@ -110,10 +115,10 @@ function Card({ onClick, title, tag, key }) {
           <div className="opacity-75 text-xs sm:text-sm">Most Popular</div>
         )}
         {tag === "m" && (
-          <div className="opacity-50 text-xs sm:text-sm">From Movie</div>
+          <div className="opacity-50 text-xs sm:text-sm">Movie</div>
         )}
         {tag === "g" && (
-          <div className="opacity-50 text-xs sm:text-sm">From Game</div>
+          <div className="opacity-50 text-xs sm:text-sm">Game</div>
         )}
         {tag === "d" && (
           <div className="opacity-50 text-xs sm:text-sm">Documentary</div>
@@ -150,8 +155,8 @@ function Suggestion({ onClick, title, tag, key }) {
       </span>
       <span className="text-sm sm:text-base">
         {tag === "top" && <div className="opacity-75 ">Most Popular</div>}
-        {tag === "m" && <div className="opacity-50 ">From Movie</div>}
-        {tag === "g" && <div className="opacity-50">From Game</div>}
+        {tag === "m" && <div className="opacity-50 ">Movie</div>}
+        {tag === "g" && <div className="opacity-50">Game</div>}
         {tag === "d" && <div className="opacity-50 ">Documentary</div>}
         {tag === "f" && <div className="opacity-50 ">Famous</div>}
       </span>

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "proxy": "https://link.jscdn.cn/",
   "scripts": {
     "dev": "next",
     "dev:watch": "next-remote-watch ./posts",
