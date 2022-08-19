@@ -25,17 +25,17 @@ const data = [
   },
   {
     title: "Pay Day",
-    url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8ydHFjc3YtbXkuc2hhcmVwb2ludC5jb20vOnY6L2cvcGVyc29uYWwvYW5kcmV3XzJ0cWNzdl9vbm1pY3Jvc29mdF9jb20vRVFFcDZuRy1BREJLb3hjVGhUa2paVE1CVWZrNlZWVlV0UnBSZ2tHQThFVTU2QT9lPXhTSkpDSg.mp4",
+    url: "https://2tqcsv-my.sharepoint.com/personal/andrew_2tqcsv_onmicrosoft_com/Documents/%e3%80%8a%e5%8f%91%e8%96%aa%e6%97%a5%e3%80%8b%e5%8d%93%e5%88%ab%e6%9e%97%e5%96%9c%e5%89%a7%e7%9f%ad%e7%89%87-%e6%b3%95%e5%8a%9b%e8%b6%85%e7%ba%a7%e5%a4%a7%e9%a3%8e%e6%9a%b4-BV1iy4y1H7Fb-5D5XYXx1P6TPqpqN.mp4?ga=1jb20vRVFFcDZuRy1BREJLb3hjVGhUa2paVE1CVWZrNlZWVlV0UnBSZ2tHQThFVTU2QT9lPXhTSkpDSg.mp4",
     tag: "m",
   },
   {
     title: "The Great Dictator",
-    url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8ydHFjc3YtbXkuc2hhcmVwb2ludC5jb20vOnY6L2cvcGVyc29uYWwvYW5kcmV3XzJ0cWNzdl9vbm1pY3Jvc29mdF9jb20vRWVZTThxVzF4dlJOaEJnRi1fRzgzYjRCRnhOWGxFcjR0cVlmdnh1d01OeENSUT9lPW5aV2xXSg.mp4",
+    url: "https://2tqcsv-my.sharepoint.com/personal/andrew_2tqcsv_onmicrosoft_com/Documents/%e3%80%8a%e5%a4%a7%e7%8b%ac%e8%a3%81%e8%80%85%e3%80%8b%e5%8d%93%e5%88%ab%e6%9e%97%e7%bb%8f%e5%85%b8%e7%a5%9e%e4%bd%9c--BV1r441167FT-AIX4W1HvOcuEZsJZ.mp4?ga=129mdF9jb20vRWVZTThxVzF4dlJOaEJnRi1fRzgzYjRCRnhOWGxFcjR0cVlmdnh1d01OeENSUT9lPW5aV2xXSg.mp4",
     tag: "m",
   },
   {
     title: "Singing in the Rain (Movie)",
-    url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8ydHFjc3YtbXkuc2hhcmVwb2ludC5jb20vOnY6L2cvcGVyc29uYWwvYW5kcmV3XzJ0cWNzdl9vbm1pY3Jvc29mdF9jb20vRVFHeDdLUjdMQ3RCcVVRZUh4RmZJWVlCd3JYdzZvRGk3X0tXME9iZk82OWZQQT9lPUpuV0FVSQ.mp4",
+    url: "https://2tqcsv-my.sharepoint.com/personal/andrew_2tqcsv_onmicrosoft_com/Documents/%e9%9b%a8%e4%b8%ad%e6%9b%b2.mp4?ga=1mdF9jb20vRVFHeDdLUjdMQ3RCcVVRZUh4RmZJWVlCd3JYdzZvRGk3X0tXME9iZk82OWZQQT9lPUpuV0FVSQ.mp4",
     tag: "m",
   },
   {
