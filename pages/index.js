@@ -5,6 +5,7 @@ import { Transition } from "@headlessui/react";
 import Player from "../components/Player";
 import Link from "next/link";
 import Utterances from "utterances-react";
+import { useRouter } from "next/router";
 
 const data = [
   {
@@ -21,6 +22,11 @@ const data = [
     title: "The Street of World War II",
     url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnU0t2MFg5RHFPamlOd3lCP2U9OTluZFRq.mp4",
     tag: "f",
+  },
+  {
+    title: "Singing in the Rain (Movie)",
+    url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8ydHFjc3YtbXkuc2hhcmVwb2ludC5jb20vOnY6L2cvcGVyc29uYWwvYW5kcmV3XzJ0cWNzdl9vbm1pY3Jvc29mdF9jb20vRVFHeDdLUjdMQ3RCcVVRZUh4RmZJWVlCd3JYdzZvRGk3X0tXME9iZk82OWZQQT9lPUpuV0FVSQ.mp4",
+    tag: "m",
   },
   {
     title: "You Were Meant for Me",
@@ -177,6 +183,8 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [donate, setDonate] = useState(true);
+  const [bio, setBio] = useState(true);
+  const router = useRouter();
   const SearchFiltered = data.filter((data) =>
     data.title.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -319,9 +327,7 @@ export default function Home() {
           <div
             className={cn(
               "top-0 border dark:border-zinc-800 z-[60] animate__animated bg-white/0 dark:bg-black/0 backdrop-blur-lg text-xs sm:text-sm sm:mt-0 fixed bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 w-full mx-auto min-h-screen overflow-y-auto",
-              openv === true
-                ? "block animate__slideInUp"
-                : "animate__slideOutDown"
+              openv === true ? "animate__slideInUp" : "animate__slideOutDown"
             )}
           >
             <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
@@ -337,12 +343,40 @@ export default function Home() {
                 </button>
                 <span className="opacity-60">Now Playing: {isPlaying}</span>
               </div>
-              <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm rounded-lg my-4 px-8 py-2">
-                Important: If you cannot exit fullscreen, try doublepress the
-                "ESC" or "Back" button.
+              <div className="max-w-2xl sm:max-w-3xl mx-auto opacity-75 border dark:border-zinc-800 text-xs sm:text-sm rounded-lg my-4 px-8 py-2">
+                <span>
+                  Important: If you cannot exit fullscreen, try doublepress the
+                  "ESC" or "Back" button.
+                </span>
               </div>
             </div>
             <Player theme={theme} url={playing} />
+            {bio === true && (
+              <div className="flex flex-col space-y-4 max-w-2xl sm:max-w-3xl mx-auto opacity-75 border dark:border-zinc-800 text-xs sm:text-sm rounded-lg my-4 px-8 py-6">
+                <span>
+                  Bio: I'm working on fixing the fullscreen mode on Safari. If
+                  you have troble fullscreen, please try to click "fullscreen"
+                  button at once and immediately press "ESC". If you have
+                  suggestions, please leave a message.
+                </span>
+                <span className="my-4 flex flex-row space-x-4">
+                  <button
+                    onClick={() => setBio(false)}
+                    className="border rounded-lg dark:border-zinc-800 px-8 py-2"
+                  >
+                    Got it!
+                  </button>
+                  <button
+                    onClick={() =>
+                      router.push("https://github.com/Cloudflare233/tv/issues")
+                    }
+                    className="border dark:border-zinc-800 bg-black dark:bg-white text-white dark:text-black rounded-lg px-8 py-2"
+                  >
+                    Give advice
+                  </button>
+                </span>
+              </div>
+            )}
             <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
               <div className="rounded-lg border dark:border-zinc-800 px-2 sm:px-8 py-2">
                 <p className="text-sm sm:text-base opacity-60 my-3 px-3">
@@ -369,7 +403,10 @@ export default function Home() {
                 ))}
               </div>
               <div className="my-8" />
-              <div className="rounded-lg border p-2 sm:p-4 dark:border-zinc-800 min-h-[286px] animate__animated animate__fadeIn transition-all duration-500">
+              <div
+                id="comment"
+                className="rounded-lg border p-2 sm:p-4 dark:border-zinc-800 min-h-[286px] animate__animated animate__fadeIn transition-all duration-500"
+              >
                 <p className="text-sm sm:text-base opacity-60 my-3 px-6">
                   Leave a Feedback (add @movie-name if you want to jundge a
                   movie):

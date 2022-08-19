@@ -234,7 +234,7 @@ class App extends React.Component {
         >
           <div
             className={cn(
-              "max-w-2xl sm:max-w-3xl mx-auto rounded-lg border dark:border-zinc-800 w-full h-64 sm:h-[480px]",
+              "max-w-2xl sm:max-w-3xl mx-auto rounded-lg border dark:border-zinc-800 w-full h-64 sm:h-[560px]",
               loading === true ? "block" : "hidden"
             )}
           >
@@ -267,7 +267,10 @@ class App extends React.Component {
               playbackRate={playbackRate}
               volume={volume}
               muted={muted}
-              onReady={() => this.setState({ loading: false })}
+              onReady={() => {
+                this.setState({ loading: false });
+                this.setState({ playing: true });
+              }}
               onStart={() => console.log("onStart")}
               onPlay={this.handlePlay}
               onEnablePIP={this.handleEnablePIP}
@@ -282,42 +285,39 @@ class App extends React.Component {
               onDuration={this.handleDuration}
             />
           </div>
-          {info === true ? (
-            <div
-              className={cn(
-                "text-xs sm:text-sm text-zinc-200 absolute rounded-br-lg z-50 top-[12rem] sm:top-[14rem] px-4 sm:px-2 py-3 sm:py-16 leading-relaxed w-2/3 sm:w-1/3",
-                full === false
-                  ? "max-w-2xl sm:max-w-3xl mx-auto inset-x-0"
-                  : "inset-x-0 left-0 sm:left-96"
-              )}
-            >
-              <p>Video Information:</p>
-              <p className="overflow-hidden flex flex-row flex-nowrap select-all">
-                {url}
-              </p>
-              <p className="overflow-hidden flex flex-row flex-nowrap">
-                loaded: {loaded}
-              </p>
-              <p className="overflow-hidden flex flex-row flex-nowrap">
-                played: {played}
-              </p>
-              <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
-                speed: {playbackRate}
-              </p>
-              <p>fullscreen: {full === false ? <>false</> : <>true</>}</p>
-              <p className="">loop: {loop ? <>true</> : <>false</>}</p>
-              <button onClick={this.handleToogleInfo}>
-                [x] close this video's detail page
-              </button>
-            </div>
-          ) : (
-            <></>
-          )}
+          <div
+            className={cn(
+              "animate__animated bg-white/30 dark:bg-black/30 backdrop-blur-lg rounded-lg mt-4 text-zinc-200 absolute z-50 top-[12rem] sm:top-[14rem] px-4 sm:px-16 py-3 sm:py-12 leading-relaxed w-2/3 sm:w-1/3",
+              full === false
+                ? "text-xs sm:text-sm  max-w-2xl sm:max-w-3xl mx-auto inset-x-0"
+                : "text-sm sm:text-base inset-x-0 left-0 mx-auto",
+              info === true ? "animate__fadeIn" : "animate__fadeOut"
+            )}
+          >
+            <p>Video Information:</p>
+            <p className="overflow-hidden flex flex-row flex-nowrap select-all">
+              {url}
+            </p>
+            <p className="overflow-hidden flex flex-row flex-nowrap">
+              loaded: {loaded}
+            </p>
+            <p className="overflow-hidden flex flex-row flex-nowrap">
+              played: {played}
+            </p>
+            <p className="overflow-hidden flex flex-row flex-nowrap after:content-['x']">
+              speed: {playbackRate}
+            </p>
+            <p>fullscreen: {full === false ? <>false</> : <>true</>}</p>
+            <p className="">loop: {loop ? <>true</> : <>false</>}</p>
+            <button onClick={this.handleToogleInfo}>
+              [x] close this video's detail page
+            </button>
+          </div>
           <div
             style={{ zIndex: 99999999 }}
             className={cn(
-              "full width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
-              !!this.state.isWarning ? "" : "animate__fadeOutDown",
+              "full width animate__animated animate__fadeIn transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
+              !!this.state.isWarning ? "" : "animate__fadeOut",
               loading === true ? "hidden" : "",
               full === false
                 ? "top-[18rem] sm:top-[33rem]"
