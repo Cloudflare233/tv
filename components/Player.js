@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 import { Icon } from "@iconify/react";
 import Duration from "./Duration";
 import Keyevent from "react-keyevent";
+import { useTheme } from "next-themes";
 
 class App extends React.Component {
   state = {
@@ -187,7 +188,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { url } = this.props;
+    const { url, theme } = this.props;
     const {
       playing,
       controls,
@@ -202,6 +203,7 @@ class App extends React.Component {
       pip,
       info,
       full,
+      loading,
     } = this.state;
     const SEPARATOR = " · ";
 
@@ -230,11 +232,14 @@ class App extends React.Component {
             onSpace,
           }}
         >
-          {played === 0 && loaded < 1 && (
-            <>
-              <div className="border dark:border-zinc-800 skeleton max-w-2xl sm:max-w-3xl mx-auto mt-4 sm:mt-8 animate-pulse w-full h-64 sm:h-[480px] rounded-lg"></div>
-            </>
-          )}
+          <div
+            className={cn(
+              "max-w-2xl sm:max-w-3xl mx-auto rounded-lg border dark:border-zinc-800 w-full h-64 sm:h-[480px]",
+              loading === true ? "block" : "hidden"
+            )}
+          >
+            <div className="text-center">Please Wait...</div>
+          </div>
           <div
             onTouchEnd={() => this.showSaveCover()}
             onMouseEnter={() => this.showSaveCover()}
@@ -242,7 +247,7 @@ class App extends React.Component {
             onClick={() => this.showSaveCover()}
             className={cn(
               "mx-auto animate__animated animate__fadeIn z9 rounded-lg px-2 sm:px-4 py-3 sm:py-6 border dark:border-zinc-800",
-              played === 0 && loaded < 1 ? "hidden" : "block",
+              loading === true ? "hidden" : "block",
               full === false
                 ? "max-w-2xl sm:max-w-3xl "
                 : "w-screen mx-auto h-screen min-w-screen"
@@ -262,7 +267,7 @@ class App extends React.Component {
               playbackRate={playbackRate}
               volume={volume}
               muted={muted}
-              onReady={() => console.log("onReady")}
+              onReady={() => this.setState({ loading: false })}
               onStart={() => console.log("onStart")}
               onPlay={this.handlePlay}
               onEnablePIP={this.handleEnablePIP}
@@ -313,7 +318,7 @@ class App extends React.Component {
             className={cn(
               "full width animate__animated animate__fadeInUp transition-all duration-500 flex flex-col inset-x-0 space-y-1.5 z-30 backdrop-blur-lg absolute px-4  py-2 rounded-lg bg-white/30 dark:bg-black/30",
               !!this.state.isWarning ? "" : "animate__fadeOutDown",
-              played === 0 && loaded < 1 ? "hidden" : "",
+              loading === true ? "hidden" : "",
               full === false
                 ? "top-[18rem] sm:top-[33rem]"
                 : "top-[36rem] sm:top-[56rem] inset-x-0"

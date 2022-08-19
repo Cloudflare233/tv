@@ -177,7 +177,6 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [donate, setDonate] = useState(true);
-  const [loading, setLoading] = useState(true);
   const SearchFiltered = data.filter((data) =>
     data.title.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -227,12 +226,12 @@ export default function Home() {
         {donate === true && (
           <div
             className={cn(
-              "sticky top-[2.55rem] py-1 border-b dark:border-b-zinc-800 bg-white dark:bg-black z-50",
+              "sticky top-[2.5rem] py-1 border-b dark:border-b-zinc-800 bg-white dark:bg-black z-50",
               openv === false ? "block" : "hidden"
             )}
           >
             <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
-              <div className="cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-4 sm:p-8 my-4">
+              <div className="rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-4 sm:p-8 my-4">
                 <img
                   src={theme === "light" ? "/ukraine.png" : "/ukraine_dark.png"}
                   className="w-36 mx-auto sm:w-48"
@@ -254,7 +253,7 @@ export default function Home() {
           <div
             onClick={() => setDonate(true)}
             className={cn(
-              "cursor-pointer flex flex-row justify-center mx-auto inset-x-0 sticky top-[2.55rem] border-b dark:border-b-zinc-800 py-2 text-xs sm:text-sm dark:text-zinc-400 text-zinc-600 bg-white dark:bg-black z-50",
+              "cursor-pointer flex flex-row justify-center mx-auto inset-x-0 sticky top-[2.5rem] border-b dark:border-b-zinc-800 py-2 text-xs sm:text-sm dark:text-zinc-400 text-zinc-600 bg-white dark:bg-black z-50",
               openv === false ? "block" : "hidden"
             )}
           >
@@ -343,7 +342,7 @@ export default function Home() {
                 "ESC" or "Back" button.
               </div>
             </div>
-            <Player url={playing} />
+            <Player theme={theme} url={playing} />
             <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
               <div className="rounded-lg border dark:border-zinc-800 px-2 sm:px-8 py-2">
                 <p className="text-sm sm:text-base opacity-60 my-3 px-3">
@@ -400,7 +399,11 @@ export default function Home() {
               </div>
               <div className="my-8" />
               <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
-                <div className="rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-8 sm:p-24 my-4">
+                <div
+                  className={cn(
+                    "rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white/0 dark:bg-black/0 p-8 sm:p-24 my-4"
+                  )}
+                >
                   <img
                     src={
                       theme === "light" ? "/ukraine.png" : "/ukraine_dark.png"
@@ -413,10 +416,10 @@ export default function Home() {
                   </span>
                 </div>
               </Link>
-              <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
-                <h2 className="font-medium opacity-40 text-xs sm:text-sm">
+              <footer className="bg-white/0 dark:bg-black/0 bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
+                <span className="font-medium opacity-40 text-xs sm:text-sm">
                   Copyright ©️ 2022 Cloudflare233.
-                </h2>
+                </span>
                 <select
                   value={theme}
                   onChange={(e) => setTheme(e.target.value)}
