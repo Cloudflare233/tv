@@ -14,7 +14,7 @@ const data = [
   },
   {
     title: "iPhone SE 2",
-    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZjaWlVWk4ydzAtUGFDMVk_ZT1jdm1zNks.mp4",
+    url: "https://link.jscdn.cn/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3YvcyFBaUV0TzBwNnFvZ1ZnU1JyZlo4SWVUUFdQWC1FP2U9b1llMGhT.mp4",
     tag: "f",
   },
   {
@@ -316,124 +316,123 @@ export default function Home() {
             </p>
           )}
         </span>
-        {openv === true && (
-          <Transition
-            show={openv}
-            enter="transition-opacity duration-75"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+        <>
+          <div
+            className={cn(
+              "top-0 border dark:border-zinc-800 z-[60] animate__animated bg-white/0 dark:bg-black/0 backdrop-blur-lg text-xs sm:text-sm sm:mt-0 fixed bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 w-full mx-auto min-h-screen overflow-y-auto",
+              openv === true
+                ? "block animate__slideInUp"
+                : "animate__slideOutDown"
+            )}
           >
-            <>
-              <div className="bg-white dark:bg-black text-xs sm:text-sm sm:mt-0 fixed top-0 bottom-0 inset-x-0 rounded-lg p-4 sm:p-12 z-30 w-full mx-auto min-h-screen overflow-y-auto">
-                <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
-                  <div className="my-5 flex flex-row space-x-4 border-b dark:border-b-zinc-800 py-3">
-                    <button onClick={() => setOpenV(false)}>
-                      ← Back to index
-                    </button>
-                    <span className="opacity-60">Now Playing: {isPlaying}</span>
-                  </div>
-                  <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-900 rounded-lg my-4 px-8 py-2">
-                    Important: If you cannot exit fullscreen, try doublepress
-                    the "ESC" or "Back" button.
-                  </div>
-                </div>
-                <Player url={playing} />
-                <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
-                  <div className="rounded-lg border dark:border-zinc-800 px-2 sm:px-8 py-2">
-                    <p className="text-sm sm:text-base opacity-60 my-3 px-3">
-                      According to this video, you may also like:
-                    </p>
-                    {SearchFiltered.map((item) => (
-                      <>
-                        {" "}
-                        {tag === item.tag && isPlaying !== item.title && (
-                          <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4">
-                            <Suggestion
-                              title={item.title}
-                              tag={item.tag}
-                              key={item.url}
-                              onClick={() => {
-                                setPlaying(item.url);
-                                setIsPlaying(item.title);
-                                setTag(item.tag);
-                              }}
-                            />
-                          </div>
-                        )}
-                      </>
-                    ))}
-                  </div>
-                  <div className="my-8" />
-                  <div className="rounded-lg border p-2 sm:p-4 dark:border-zinc-800 min-h-[286px] animate__animated animate__fadeIn transition-all duration-500">
-                    <p className="text-sm sm:text-base opacity-60 my-3 px-6">
-                      Leave a Feedback (add @movie-name if you want to jundge a
-                      movie):
-                    </p>
-                    {theme === "light" && (
-                      <Utterances
-                        repo="cloudflare233/tv"
-                        issueTerm="pathname"
-                        theme="github-light"
-                        label=""
-                        crossorigin="anonymous"
-                        async={false}
-                        className="z-10"
-                      />
-                    )}
-                    {theme === "dark" && (
-                      <Utterances
-                        repo="cloudflare233/tv"
-                        issueTerm="pathname"
-                        theme="github-dark"
-                        label=""
-                        crossorigin="anonymous"
-                        async={false}
-                        className="z-10"
-                      />
-                    )}
-                  </div>
-                  <div className="my-8" />
-                  <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
-                    <div className="rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-8 sm:p-24 my-4">
-                      <img
-                        src={
-                          theme === "light"
-                            ? "/ukraine.png"
-                            : "/ukraine_dark.png"
-                        }
-                        className="w-36 mx-auto sm:w-48"
-                      />
-                      <span className="text-xs sm:text-sm text-blue-500 underline">
-                        Donate to support families affected by the war in
-                        Ukraine, Fight for freedom ↗
-                      </span>
-                    </div>
-                  </Link>
-                  <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
-                    <h2 className="font-medium opacity-40 text-xs sm:text-sm">
-                      Copyright ©️ 2022 Cloudflare233.
-                    </h2>
-                    <select
-                      value={theme}
-                      onChange={(e) => setTheme(e.target.value)}
-                      className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
-                    >
-                      <option value="light">☀️ Light</option>
-                      <option value="dark">🌙 Dark</option>
-                    </select>
-                  </footer>
-                </div>
+            <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
+              <div className="my-5 flex flex-row space-x-4 border-b dark:border-b-zinc-800 py-3">
+                <button
+                  onClick={() => {
+                    setOpenV(false);
+                    setPlaying("");
+                    setIsPlaying("");
+                  }}
+                >
+                  ← Back to index
+                </button>
+                <span className="opacity-60">Now Playing: {isPlaying}</span>
               </div>
-            </>
-          </Transition>
-        )}
+              <div className="opacity-75 border dark:border-zinc-800 text-xs sm:text-sm rounded-lg my-4 px-8 py-2">
+                Important: If you cannot exit fullscreen, try doublepress the
+                "ESC" or "Back" button.
+              </div>
+            </div>
+            <Player url={playing} />
+            <div className="max-w-2xl sm:max-w-3xl mx-auto mt-8">
+              <div className="rounded-lg border dark:border-zinc-800 px-2 sm:px-8 py-2">
+                <p className="text-sm sm:text-base opacity-60 my-3 px-3">
+                  According to this video, you may also like:
+                </p>
+                {SearchFiltered.map((item) => (
+                  <>
+                    {" "}
+                    {tag === item.tag && isPlaying !== item.title && (
+                      <div className="max-w-2xl sm:max-w-3xl mx-auto flex flex-col space-y-4 mb-5">
+                        <Suggestion
+                          title={item.title}
+                          tag={item.tag}
+                          key={item.url}
+                          onClick={() => {
+                            setPlaying(item.url);
+                            setIsPlaying(item.title);
+                            setTag(item.tag);
+                          }}
+                        />
+                      </div>
+                    )}
+                  </>
+                ))}
+              </div>
+              <div className="my-8" />
+              <div className="rounded-lg border p-2 sm:p-4 dark:border-zinc-800 min-h-[286px] animate__animated animate__fadeIn transition-all duration-500">
+                <p className="text-sm sm:text-base opacity-60 my-3 px-6">
+                  Leave a Feedback (add @movie-name if you want to jundge a
+                  movie):
+                </p>
+                {theme === "light" && (
+                  <Utterances
+                    repo="cloudflare233/tv"
+                    issueTerm="pathname"
+                    theme="github-light"
+                    label=""
+                    crossorigin="anonymous"
+                    async={false}
+                    className="z-10"
+                  />
+                )}
+                {theme === "dark" && (
+                  <Utterances
+                    repo="cloudflare233/tv"
+                    issueTerm="pathname"
+                    theme="github-dark"
+                    label=""
+                    crossorigin="anonymous"
+                    async={false}
+                    className="z-10"
+                  />
+                )}
+              </div>
+              <div className="my-8" />
+              <Link href="itmss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyCharityGiftWizard?charity=10220">
+                <div className="rounded-lg border dark:border-zinc-800 cursor-pointer flex flex-col sm:flex-row space-y-5 sm:space-y-2 space-x-8 bg-white dark:bg-black p-8 sm:p-24 my-4">
+                  <img
+                    src={
+                      theme === "light" ? "/ukraine.png" : "/ukraine_dark.png"
+                    }
+                    className="w-36 mx-auto sm:w-48"
+                  />
+                  <span className="text-xs sm:text-sm text-blue-500 underline">
+                    Donate to support families affected by the war in Ukraine,
+                    Fight for freedom ↗
+                  </span>
+                </div>
+              </Link>
+              <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
+                <h2 className="font-medium opacity-40 text-xs sm:text-sm">
+                  Copyright ©️ 2022 Cloudflare233.
+                </h2>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  className="opacity-50 appearance-none bg-white dark:bg-black focus:outline-none text-xs sm:text-sm"
+                >
+                  <option value="light">☀️ Light</option>
+                  <option value="dark">🌙 Dark</option>
+                </select>
+              </footer>
+            </div>
+          </div>
+        </>
         <footer className="bg-white dark:bg-black bottom-0 flex flex-row space-x-4 mt-4 sm:mt-8 mb-2 sm:mb-4 border-t dark:border-t-zinc-800 px-4 py-8">
-          <h2 className="font-medium opacity-40 text-xs sm:text-sm">
+          <span className="opacity-50 text-xs sm:text-sm">
             Copyright ©️ 2022 Cloudflare233.
-          </h2>
+          </span>
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}

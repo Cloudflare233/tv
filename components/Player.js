@@ -241,7 +241,7 @@ class App extends React.Component {
             onMouseDown={() => this.showSaveCover()}
             onClick={() => this.showSaveCover()}
             className={cn(
-              "mx-auto animate__animated animate__fadeIn z9 rounded-lg p-2 border dark:border-zinc-800",
+              "mx-auto animate__animated animate__fadeIn z9 rounded-lg px-2 sm:px-4 py-3 sm:py-6 border dark:border-zinc-800",
               played === 0 && loaded < 1 ? "hidden" : "block",
               full === false
                 ? "max-w-2xl sm:max-w-3xl "
@@ -250,7 +250,7 @@ class App extends React.Component {
           >
             <ReactPlayer
               ref={this.ref}
-              className="rounded-lg min-h-full mt-4 sm:mt-8 video react-player z-0"
+              className="rounded-lg min-h-full video react-player z-0"
               width="100%"
               height="100%"
               url={url}
